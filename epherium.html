@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ефіріум — Магія у кожній краплі</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">Жуля-Рижуля</div>
+      
+      <nav class="nav-links">
+        <a href="index.html">Головна</a>
+        <a href="#description">Про книгу</a>
+        <a href="#bundles">Набори</a>
+        <a href="#footer">Контакти</a>
+      </nav>
+
+      <div class="header-contact">
+        <a href="tel:+380988458007">+38 098 845-80-07</a>
+        <div class="cart" onclick="toggleCart()" style="cursor:pointer;">🛒 <span id="cart-count-header">0</span></div>
+      </div>
+
+      <button class="burger" id="burgerBtn" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Головна</a>
+    <a href="#description" onclick="closeMenu()">Про книгу</a>
+    <a href="#bundles" onclick="closeMenu()">Набори</a>
+    <a href="#footer" onclick="closeMenu()">Контакти</a>
+  </div>
+
+  <section class="hero" id="hero">
+    <div class="container hero-grid">
+      
+      <div class="hero-media">
+        <div class="main-image-wrapper">
+          <img id="mainImage" src="img/epherium-cover.jpg" alt="Книга Ефіріум" width="600" height="800">
+        </div>
+        <div class="thumbnails-row">
+          <img src="img/epherium-cover.jpg" onclick="changeImage(this.src)" class="active" alt="Cover">
+          <img src="img/page1.jpg" onclick="changeImage(this.src)" alt="Page 1">
+          <img src="img/page2.jpg" onclick="changeImage(this.src)" alt="Page 2">
+          <img src="img/page3.jpg" onclick="changeImage(this.src)" alt="Page 3">
+          <img src="img/page4.jpg" onclick="changeImage(this.src)" alt="Page 4">
+        </div>
+      </div>
+
+      <div class="hero-info">
+        <h1>Ефіріум</h1>
+        <p class="hero-subtitle">Магія у кожній краплі — чарівні історії для дітей від 0 до 12 років</p>
+        
+        <div class="hero-price-block">
+          <span class="price-label">Ціна:</span>
+          <span class="current-price" data-product="epherium">320 грн</span>
+        </div>
+
+        <div class="hero-cta-desktop">
+          <button class="btn-primary" onclick="addToCart('Ефіріум', 320)">
+            Купити зараз
+          </button>
+        </div>
+
+        <div class="book-meta">
+          <p><strong>Автор:</strong> Олександр Бірюк</p>
+          <p><strong>Мова:</strong> Українська</p>
+          <p><strong>Формат:</strong> 8.5 x 11 дюймів, 48 сторінок</p>
+          <p><strong>ISBN:</strong> 979-8275307368</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section-description" id="description">
+    <div class="container content-max-width">
+      <h2 class="section-title">Про книгу</h2>
+      <div class="text-block">
+        <p>Відкрийте магію ефірних олій разом із Софі у «Ефіріумі» — книзі, про яку говорять усі батьки! Коли маленька Софі знаходить старовинну скриньку з яскравими флаконами у новому будинку, її життя назавжди змінюється. Духи лаванди, м’яти, лимону та інших ефірних олій оживають, допомагаючи подолати страхи, знайти друзів, відчути сміливість на сцені та відкрити свою справжню долю.</p>
+        <ul>
+          <li>7 захопливих казкових розділів — кожен з терапевтичною ефірною олією</li>
+          <li>Розвиває емоційний інтелект — допомагає справлятися з тривогою та страхами</li>
+          <li>Красиві ілюстрації на кожній сторінці</li>
+          <li>QR-код всередині — слухайте, як автор читає історії (ідеально на ніч)</li>
+          <li>Створено сертифікованими аромапсихологами — безпечно та навчально</li>
+        </ul>
+        <p>«Ефіріум» стане улюбленим супутником перед сном для вашої дитини.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-bundles" id="bundles">
+    <div class="container">
+      <h2 class="section-title center-text">Вигідні набори з Ефіріумом</h2>
+      <div class="bundles-grid">
+        
+        <div class="bundle-card">
+          <h3>Ефіріум + Мініатюри 5мл ×12</h3>
+          <p class="bundle-desc">Книга + повний набір ефірних олій (12 шт)</p>
+          <div class="price-row">
+            <span class="old-price">1200 грн</span>
+            <span class="bundle-price">990 грн</span>
+          </div>
+          <button class="btn-primary" onclick="addToCart('Ефіріум + Мініатюри 12шт', 990)">Купити набір</button>
+        </div>
+
+        <div class="bundle-card">
+          <h3>Ефіріум + Мініатюри 5мл ×3</h3>
+          <p class="bundle-desc">Книга + набір ефірних олій (3 шт)</p>
+          <div class="price-row">
+            <span class="old-price">780 грн</span>
+            <span class="bundle-price">690 грн</span>
+          </div>
+          <button class="btn-primary" onclick="addToCart('Ефіріум + Мініатюри 3шт', 690)">Купити набір</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section-reviews">
+    <div class="container">
+      <h2 class="section-title center-text">Відгуки батьків</h2>
+      <div class="reviews-scroller">
+        <div class="review-card">
+          <p><strong>Юлія Ковтун:</strong> «Дуже яскрава книга з великими малюнками. Дітям сподобалось, сама читала з задоволенням.»</p>
+        </div>
+        <div class="review-card">
+          <p><strong>Олена:</strong> «Чудові ілюстрації, казка сподобалась і дитині, і мені. Рекомендую!»</p>
+        </div>
+        <div class="review-card">
+          <p><strong>Марія:</strong> «Гарна книга, чудові поради для батьків та дітей. Аудіоверсія — супер.»</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-cta">
+    <div class="container">
+      <h2>Замовляйте «Ефіріум» вже сьогодні</h2>
+      <button class="btn-primary" onclick="addToCart('Ефіріум', 320)">Купити книгу зараз</button>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <div class="container footer-content">
+      <div class="footer-col">
+        <h4>Контакти</h4>
+        <p>store@zhulya.ua</p>
+        <p>+38 098 845-80-07</p>
+        <p>Конотоп, Україна</p>
+      </div>
+      <div class="footer-col">
+        <h4>Ми в соцмережах</h4>
+        <div class="social-links">
+          <a href="#">Facebook</a>
+          <a href="#">Instagram</a>
+          <a href="#">YouTube</a>
+        </div>
+      </div>
+    </div>
+       <div class="container" style="text-align: center;">
+      <a href="index.html" style="color: var(--color-ocean); display: inline-block; margin-top: 20px;">← Повернутися на головну</a>
+    </div>
+  </footer>
+
+  <div class="mobile-sticky-buy">
+    <div class="sticky-btn-wrapper">
+      <button class="btn-primary" onclick="addToCart('Ефіріум', 320)">
+        Купити за 320 грн
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-cart-float" onclick="toggleCart()" style="display: none; position: fixed; bottom: 90px; right: 20px; background: var(--color-accent); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1001; cursor: pointer;">
+    🛒
+    <span id="cart-count-float" style="position: absolute; top: -5px; right: -5px; background: #ff4d4d; color: white; font-size: 12px; font-weight: bold; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid white;">0</span>
+  </div>
+
+  <div id="cart-modal" style="display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);">
+    <div style="background: white; margin: 50px auto; padding: 25px; width: 90%; max-width: 450px; border-radius: 20px; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+      <span onclick="toggleCart()" style="position: absolute; right: 20px; top: 15px; font-size: 24px; cursor: pointer; color: #999;">&times;</span>
+      <h3 style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px;">Ваше замовлення</h3>
+      
+      <div id="cart-items-list" style="max-height: 200px; overflow-y: auto; margin-bottom: 20px;">
+        </div>
+      
+      <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 18px; margin-bottom: 20px;">
+        <span>Разом до оплати:</span>
+        <span><span id="cart-total-sum">0</span> грн</span>
+      </div>
+
+      <form id="order-form">
+        <input type="text" id="client-name" placeholder="Прізвище та Ім'я" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px;">
+        <input type="tel" id="client-phone" placeholder="Номер телефону" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px;">
+        <input type="text" id="client-np" placeholder="Місто та № відділення Нової Пошти" required style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px;">
+        <button type="submit" class="btn-primary" style="width: 100%; border: none;">Оформити замовлення</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Функція для зміни головного фото (галерея)
+    function changeImage(src) {
+      document.getElementById('mainImage').src = src;
+      document.querySelectorAll('.thumbnails-row img').forEach(img => {
+        img.classList.remove('active');
+        if(img.src.includes(src)) img.classList.add('active');
+      });
+    }
+    // Функція для закриття меню при кліку на посилання
+    function closeMenu() {
+      document.getElementById('mobileMenu').classList.remove('active');
+      document.getElementById('burgerBtn').classList.remove('active');
+    }
+  </script>
+
+  <script src="js/data.js"></script>
+  <script src="js/prices.js"></script>
+  <script src="js/slider.js"></script>
+  <script src="js/carousel.js"></script>
+  <script src="js/burger.js"></script>
+  <script src="js/sticky-buy.js"></script>
+  <script src="js/cart.js"></script>
+  <script id="wayforpay-sdk" src="https://secure.wayforpay.com/server/pay-widget.js"></script>
+
+</body>
+</html>

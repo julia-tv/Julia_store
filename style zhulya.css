@@ -1,0 +1,629 @@
+/* ============================= */
+/* ЗМІННІ КОЛЬОРІВ (PALETTE) */
+/* ============================= */
+:root {
+  --color-accent: #00a651;       /* Яскравий зелений (як кнопка Купити) */
+  --color-accent-hover: #008c44; /* Темніший зелений для ховеру */
+  --color-price: #e31e24;        /* Червоний для цін */
+  --color-text-main: #333333;    /* Основний текст */
+  --color-text-specs: #004225;   /* Темно-зелений для характеристик (Ваш запит) */
+  --color-bg-light: #f9f9f9;     /* Світлий фон */
+  --color-toolbar-bg: #222222;   /* Темний тулбар */
+  --color-white: #ffffff;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+}
+
+/* ============================= */
+/* ТУЛБАР / HEADER */
+/* ============================= */
+.site-toolbar {
+  background-color: var(--color-toolbar-bg);
+  color: var(--color-white);
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.site-toolbar a {
+  color: var(--color-white);
+  text-decoration: none;
+  margin-left: 15px;
+  transition: opacity 0.3s;
+}
+
+.site-toolbar a:hover {
+  opacity: 0.8;
+}
+
+/* ============================= */
+/* ПІДКАЗКИ (TOOLTIPS) - УКРАЇНСЬКОЮ */
+/* ============================= */
+[data-tooltip] {
+  position: relative;
+  cursor: help;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip); /* Текст підказки */
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-text-specs); /* Темно-зелений фон */
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, bottom 0.3s ease;
+  pointer-events: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+/* Стрілочка для підказки */
+[data-tooltip]::before {
+  content: "";
+  position: absolute;
+  bottom: 115%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: var(--color-text-specs) transparent transparent transparent;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, bottom 0.3s ease;
+  z-index: 10;
+}
+
+[data-tooltip]:hover::after {
+  visibility: visible;
+  opacity: 1;
+  bottom: 135%;
+}
+
+[data-tooltip]:hover::before {
+  visibility: visible;
+  opacity: 1;
+  bottom: 125%;
+}
+
+/* ============================= */
+/* HERO / ЖУЛЯ-РИЖУЛЯ */
+/* ============================= */
+.zhulya-hero {
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #ffffff 0%, var(--color-bg-light) 100%);
+}
+
+.zhulya-hero__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.zhulya-hero h1 {
+  font-size: 48px;
+  margin-bottom: 24px;
+  color: var(--color-text-main);
+}
+
+.zhulya-hero__subtitle {
+  font-size: 20px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  color: #555;
+}
+
+.zhulya-hero__image {
+  background: #ffffff;
+  border: 1px solid #eee; /* Більш нейтральна рамка замість жовтого */
+  border-radius: 24px;
+  height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #888;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+}
+
+.btn-primary {
+  display: inline-block;
+  background: var(--color-accent); /* Зелений колір кнопки */
+  color: #fff;
+  padding: 14px 32px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-weight: 700;
+  transition: background 0.3s ease, transform 0.2s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 166, 81, 0.3);
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-hover);
+  transform: translateY(-2px);
+}
+
+/* ============================= */
+/* ДЛЯ КОГО */
+/* ============================= */
+.zhulya-for-whom {
+  padding: 100px 20px;
+  background: var(--color-bg-light);
+}
+
+.zhulya-for-whom__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.zhulya-for-whom h2 {
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 60px;
+  color: var(--color-text-main);
+}
+
+.zhulya-for-whom__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.for-whom-item {
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 24px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+  border-top: 4px solid var(--color-accent); /* Зелена смужка зверху */
+}
+
+.for-whom-item h3 {
+  margin-bottom: 16px;
+  color: var(--color-text-main);
+}
+
+.for-whom-item p {
+  color: #666;
+  line-height: 1.5;
+}
+
+/* ============================= */
+/* SECTION: PRODUCTS / BOOKS */
+/* ============================= */
+
+.products {
+  padding: 80px 0;
+  background: #ffffff;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 40px;
+  color: var(--color-text-main);
+}
+
+/* Карусель */
+.books-carousel {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 10px 20px 30px 20px; /* Відступи для тіней */
+}
+
+.books-carousel::-webkit-scrollbar {
+  height: 8px;
+}
+
+.books-carousel::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+.books-carousel::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Карточка книги */
+.book-card {
+  flex: 0 0 280px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  text-decoration: none;
+  color: var(--color-text-main);
+  scroll-snap-align: start;
+  border: 1px solid #eeeeee;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.book-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  border-color: var(--color-accent);
+}
+
+/* Заглушка під обкладинку */
+.book-image {
+  height: 220px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #777;
+  overflow: hidden;
+}
+
+.placeholder {
+  background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+}
+
+.book-card h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #000;
+  line-height: 1.3;
+}
+
+/* ХАРАКТЕРИСТИКИ КНИГИ - ВАШ ЗАПИТ */
+.book-card p {
+  font-size: 14px;
+  color: var(--color-text-specs); /* #004225 */
+  line-height: 1.4;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+/* ============================= */
+/* SECTION: ЖУЛЯ-ПРОДУКТИ */
+/* ============================= */
+.zhulya-products {
+  padding: 80px 20px;
+  background: var(--color-bg-light);
+}
+
+.zhulya-products__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.zhulya-products h2 {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 50px;
+  color: var(--color-text-main);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* мобільна адаптація по замовчуванню */
+  gap: 30px;
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 30px 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  border: 1px solid transparent;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  border-color: #eee;
+}
+
+.product-image {
+  height: 180px;
+  margin-bottom: 20px;
+  border-radius: 16px;
+  /* Змінено градієнт на більш нейтральний або свіжий */
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9); 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #555;
+}
+
+.product-card h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: var(--color-text-main);
+}
+
+.product-card p {
+  font-size: 14px;
+  color: #666; /* Тут залишаємо сірий для опису, або можна змінити на --color-text-specs якщо треба */
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.product-card button {
+  padding: 12px 28px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  background: var(--color-accent); /* Зелений */
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 166, 81, 0.2);
+}
+
+.product-card button:hover {
+  background: var(--color-accent-hover);
+  box-shadow: 0 6px 15px rgba(0, 166, 81, 0.3);
+}
+
+
+/* ============================= */
+/* SECTION: BUNDLES / SETS */
+/* ============================= */
+
+.bundles {
+  padding: 80px 0;
+  background: #fff;
+}
+
+.bundles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.bundle-card {
+  border: 2px solid #f1f1f1;
+  border-radius: 18px;
+  padding: 28px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bundle-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  border-color: var(--color-accent);
+}
+
+.bundle-desc {
+  color: #555;
+  margin: 12px 0 20px;
+}
+
+.prices {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 16px;
+}
+
+.new-price {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--color-price); /* Червона ціна */
+}
+
+/* Кнопка в бандлах */
+.bundle-card .btn-primary {
+  /* Стилі наслідуються від .btn-primary, але можна уточнити розмір */
+  width: 100%;
+  padding: 12px 0;
+}
+/* ============================= */
+/* SECTION: REVIEWS / ВІДГУКИ */
+/* ============================= */
+
+.reviews {
+  background: linear-gradient(to bottom, var(--highlight-bg), var(--highlight-bottom));
+  padding: 60px 20px;
+}
+
+.reviews .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.reviews h2 {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+/* Карусель */
+.reviews-carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  align-items: flex-start;
+}
+
+/* Один відгук */
+.review-item {
+  height: 300px;
+  flex-shrink: 0;
+}
+
+/* Зображення */
+.review-item img {
+  height: 100%;
+  width: auto !important;
+  max-width: none !important;
+  object-fit: contain;
+  display: block;
+  border-radius: 12px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .review-item {
+    height: 220px;
+  }
+
+  .reviews h2 {
+    font-size: 26px;
+  }
+}
+
+/* ============================= */
+/* SECTION: CTA / CALL TO ACTION */
+/* ============================= */
+
+.cta {
+  padding: 100px 0;
+  background: linear-gradient(
+    135deg,
+    var(--color-accent),
+    var(--color-accent-hover)
+  );
+}
+
+.cta-box {
+  text-align: center;
+  color: var(--color-white);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.cta-title {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.cta-text {
+  font-size: 18px;
+  margin-bottom: 32px;
+  opacity: 0.95;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 16px 36px;
+  background: var(--color-white);
+  color: var(--color-accent);
+  border-radius: 40px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  background: #f1f1f1;
+  transform: translateY(-2px);
+}
+
+
+/* ============================= */
+/* MEDIA QUERIES (АДАПТИВНІСТЬ) */
+/* ============================= */
+
+/* Mobile First підхід враховано вище, тут правки для більших екранів */
+
+@media (max-width: 900px) {
+  .zhulya-hero__container,
+  .zhulya-for-whom__grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .zhulya-hero h1 {
+    font-size: 36px;
+  }
+  
+  .zhulya-hero__image {
+    height: 280px;
+    margin-bottom: 30px;
+    order: -1; /* Картинка зверху на мобільному */
+  }
+}
+
+@media (max-width: 768px) {
+  .products {
+    padding: 60px 0;
+  }
+
+  .section-title {
+    font-size: 26px;
+  }
+  
+  .zhulya-products h2 {
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 600px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .zhulya-products h2 {
+    font-size: 36px;
+  }
+
+  .product-card h3 {
+    font-size: 22px;
+  }
+}
+/* ============================= */
+/* SECTION: REVIEWS / ВІДГУКИ */
+/* ============================= */
+/* Mobile */
+@media (max-width: 768px) {
+  .reviews {
+    padding: 60px 0;
+  }
+}
+/* ============================= */
+/* SECTION: CTA / CALL TO ACTION */
+/* ============================= */
+/* Mobile */
+@media (max-width: 768px) {
+  .cta {
+    padding: 80px 20px;
+  }
+
+  .cta-title {
+    font-size: 28px;
+  }
+
+  .cta-text {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Олександр Бірюк — Автор дитячих книг</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="hero style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">Жуля-Рижуля</div>
+      <nav class="nav-links">
+        <a href="index.html">Головна</a>
+        <a href="#books">Книги</a>
+        <a href="#bundles">Набори</a>
+        <a href="#about">Про автора</a>
+        <a href="https://www.youtube.com/@z_kazkou_do_peremogy" target="_blank">YouTube</a>
+      </nav>
+      <div class="header-contact">
+        <a href="tel:+380988458007">+38 098 845-80-07</a>
+        <div class="cart" onclick="toggleCart()" style="cursor:pointer;">🛒 <span id="cart-count-header">0</span></div>
+      </div>
+      <button class="burger" id="burgerBtn">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Головна</a>
+    <a href="#books" onclick="closeMenu()">Книги</a>
+    <a href="#bundles" onclick="closeMenu()">Набори</a>
+    <a href="#about" onclick="closeMenu()">Про автора</a>
+    <a href="#" onclick="toggleCart(); closeMenu();">Кошик (🛒 <span id="cart-count-mobile">0</span>)</a>
+  </div>
+
+  <section class="main-slider">
+    <div class="slider-container">
+      <a href="#about" class="slide active"><img src="img/author-banner.png" alt="Олександр Бірюк"></a>
+      <a href="zhulya.html" class="slide"><img src="img/zhulya-banner.png" alt="Жуля-Рижуля"></a>
+      <a href="epherium.html" class="slide"><img src="img/epherium-banner.png" alt="Ефіріум"></a>
+      <button class="slider-prev">&lsaquo;</button>
+      <button class="slider-next">&rsaquo;</button>
+      <div class="slider-dots">
+        <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+    </div>
+  </section>
+
+  <section id="books" class="books-section" style="padding: 60px 0;">
+    <div class="container">
+      <h2 class="section-title" style="text-align: center; margin-bottom: 40px;">Наші видання</h2>
+      <div class="books-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+        <div class="book-card" style="text-align: center; background: #fff; padding: 20px; border-radius: 15px; box-shadow: var(--shadow-card);">
+          <a href="epherium.html"><img src="img/epherium-cover.jpg" alt="Ефіріум"></a>
+          <h3 style="margin: 15px 0 5px;"><a href="epherium.html">Ефіріум</a></h3>
+          <div style="font-weight: bold; font-size: 20px; margin: 10px 0;">320 грн</div>
+          <button class="btn-primary" onclick="addToCart('Ефіріум', 320)" style="width: 100%; border: none;">Купити</button>
+        </div>
+        <div class="book-card" style="text-align: center; background: #fff; padding: 20px; border-radius: 15px; box-shadow: var(--shadow-card);">
+          <a href="zhulya.html"><img src="img/zhulya-cover.jpg" alt="Жуля-Рижуля"></a>
+          <h3 style="margin: 15px 0 5px;"><a href="zhulya.html">Жуля-Рижуля</a></h3>
+          <div style="font-weight: bold; font-size: 20px; margin: 10px 0;">320 грн</div>
+          <button class="btn-primary" onclick="addToCart('Жуля-Рижуля', 320)" style="width: 100%; border: none;">Купити</button>
+        </div>
+        <div class="book-card" style="text-align: center; background: #fff; padding: 20px; border-radius: 15px; box-shadow: var(--shadow-card);">
+          <a href="sketches.html"><img src="img/sketches-cover.jpg" alt="Ескізи"></a>
+          <h3 style="margin: 15px 0 5px;"><a href="sketches.html">Ескізи жіночності</a></h3>
+          <div style="font-weight: bold; font-size: 20px; margin: 10px 0;">450 грн</div>
+          <button class="btn-primary" onclick="addToCart('Асоціативні ескізи жіночності', 450)" style="width: 100%; border: none;">Купити</button>
+        </div>
+        <div class="book-card" style="text-align: center; background: #fff; padding: 20px; border-radius: 15px; box-shadow: var(--shadow-card);">
+          <a href="zhulya_coloring.html"><img src="img/coloring-cover.jpg" alt="Розмальовка"></a>
+          <h3 style="margin: 15px 0 5px;"><a href="zhulya_coloring.html">Велика розмальовка</a></h3>
+          <div style="font-weight: bold; font-size: 20px; margin: 10px 0;">250 грн</div>
+          <button class="btn-primary" onclick="addToCart('Велика розмальовка Жуля-Рижуля', 250)" style="width: 100%; border: none;">Купити</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="bundles" style="padding: 60px 0; background: #f0fdf4;">
+    <div class="container">
+      <h2 class="section-title" style="text-align: center; margin-bottom: 40px;">Вигідні набори</h2>
+      <div class="bundles-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 25px;">
+        <div class="bundle-item" style="background: #fff; padding: 20px; border-radius: 20px; display: flex; align-items: center; gap: 15px; border: 1px solid #dcfce7;">
+          <img src="img/bundle-all.png" alt="Всі книги" style="width: 120px;">
+          <div>
+            <h3 style="font-size: 18px;">Повна колекція</h3>
+            <p style="font-size: 13px; color: #666;">Всі 4 видання разом</p>
+            <div style="font-weight: bold;">1100 грн <span style="text-decoration: line-through; color: #999; font-size: 12px;">1340 грн</span></div>
+            <button class="btn-primary" onclick="addToCart('Набір: Повна колекція', 1100)" style="margin-top: 10px; padding: 8px 15px;">До кошика</button>
+          </div>
+        </div>
+        <div class="bundle-item" style="background: #fff; padding: 20px; border-radius: 20px; display: flex; align-items: center; gap: 15px; border: 1px solid #dcfce7;">
+          <img src="img/bundle-kids.png" alt="Дитячий набір" style="width: 120px;">
+          <div>
+            <h3 style="font-size: 18px;">Жуля + Розмальовка</h3>
+            <p style="font-size: 13px; color: #666;">Книга та велика розмальовка</p>
+            <div style="font-weight: bold;">490 грн <span style="text-decoration: line-through; color: #999; font-size: 12px;">570 грн</span></div>
+            <button class="btn-primary" onclick="addToCart('Набір: Жуля + Розмальовка', 490)" style="margin-top: 10px; padding: 8px 15px;">До кошика</button>
+          </div>
+        </div>
+        <div class="bundle-item" style="background: #fff; padding: 20px; border-radius: 20px; display: flex; align-items: center; gap: 15px; border: 1px solid #dcfce7;">
+          <img src="img/bundle-magic.png" alt="Магічний набір" style="width: 120px;">
+          <div>
+            <h3 style="font-size: 18px;">Магічний тандем</h3>
+            <p style="font-size: 13px; color: #666;">Ефіріум + Жуля-Рижуля</p>
+            <div style="font-weight: bold;">580 грн <span style="text-decoration: line-through; color: #999; font-size: 12px;">640 грн</span></div>
+            <button class="btn-primary" onclick="addToCart('Набір: Магічний тандем', 580)" style="margin-top: 10px; padding: 8px 15px;">До кошика</button>
+          </div>
+        </div>
+        <div class="bundle-item" style="background: #fff; padding: 20px; border-radius: 20px; display: flex; align-items: center; gap: 15px; border: 1px solid #dcfce7;">
+          <img src="img/bundle-art.png" alt="Арт набір" style="width: 120px;">
+          <div>
+            <h3 style="font-size: 18px;">Творчий дует</h3>
+            <p style="font-size: 13px; color: #666;">Дві розмальовки (дитяча + доросла)</p>
+            <div style="font-weight: bold;">620 грн <span style="text-decoration: line-through; color: #999; font-size: 12px;">700 грн</span></div>
+            <button class="btn-primary" onclick="addToCart('Набір: Творчий дует', 620)" style="margin-top: 10px; padding: 8px 15px;">До кошика</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: 60px 0; background: #fff;">
+    <div class="container" style="text-align: center;">
+      <h2 style="color: var(--color-accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px;">Незабаром у продажу</h2>
+      <div class="book-card" style="display: inline-block; text-align: center; background: #fff; padding: 25px; border-radius: 20px; box-shadow: var(--shadow-card); max-width: 350px; border: 2px solid #f0f0f0;">
+        <img src="img/zhulya2-preview.jpg" alt="Жуля-Рижуля 2" style="width: 250px; border-radius: 15px; margin: 0 auto 20px; display: block;">
+        <h3 style="margin-bottom: 10px;">Жуля-Рижуля: Нові пригоди</h3>
+        <p style="color: #666; margin-bottom: 20px;">Довгоочікуване продовження історії (2026)</p>
+        <a href="zhulya_2.html" class="btn-primary" style="display: block; background: #333; color: #fff; text-decoration: none; padding: 12px; border-radius: 8px; font-weight: bold;">Дізнатися більше</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about-section" style="padding: 80px 0; background: #fdfdfd;">
+    <div class="container">
+      <div class="about-grid" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 50px; align-items: center;">
+        <div>
+          <h2 style="font-size: 36px; margin-bottom: 25px;">Хто я і чому я це пишу</h2>
+          <p style="font-size: 20px; line-height: 1.8; color: #444; font-style: italic; border-left: 4px solid var(--color-accent); padding-left: 20px;">
+            Я <strong>Олександр Бірюк</strong>, і я пішов іншим шляхом у дитячому читанні. У більшості сімей читання — це боротьба. Я ж створюю історії, які дитина спочатку хоче слухати, потім переказувати, а потім — читати самостійно.
+          </p>
+          <div style="margin-top: 30px; display: flex; gap: 20px;">
+            <a href="#" class="social-link" style="color: #E1306C; font-weight: bold;">Instagram</a>
+            <a href="https://www.youtube.com/@z_kazkou_do_peremogy" target="_blank" class="social-link" style="color: #FF0000; font-weight: bold;">YouTube</a>
+          </div>
+        </div>
+        <img src="img/author-photo.jpg" alt="Олександр Бірюк" style="border-radius: 25px; width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer" style="background: #1a1a1a; color: #fff; padding: 60px 0 30px;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 50px;">
+        <div>
+          <h4 style="color: var(--color-accent); margin-bottom: 20px;">Контакти</h4>
+          <p style="margin-bottom: 10px;">📞 +38 098 845-80-07</p>
+          <p style="margin-bottom: 10px;">✉️ store@zhulya.ua</p>
+          <p>📍 Конотоп, Україна</p>
+        </div>
+        <div>
+          <h4 style="color: var(--color-accent); margin-bottom: 20px;">Інформація</h4>
+          <ul style="line-height: 2.2;">
+            <li><a href="#" style="color: #bbb;">Договір оферти</a></li>
+            <li><a href="#" style="color: #bbb;">Правила сайту</a></li>
+            <li><a href="#" style="color: #bbb;">Доставка та оплата</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: var(--color-accent); margin-bottom: 20px;">Ми в мережі</h4>
+          <p style="color: #888; margin-bottom: 15px;">Слідкуйте за новинками!</p>
+          <div style="display: flex; gap: 20px;">
+            <a href="#" style="color: #fff;">FB</a>
+            <a href="#" style="color: #fff;">IG</a>
+            <a href="#" style="color: #fff;">YT</a>
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center; border-top: 1px solid #333; padding-top: 30px; font-size: 14px; color: #666;">
+        © 2024 Олександр Бірюк. Зроблено з любов'ю до дітей.
+      </div>
+    </div>
+  </footer>
+
+  <div id="cart-modal" style="display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);">
+    <div style="background: white; margin: 20px auto; padding: 25px; width: 90%; max-width: 450px; border-radius: 20px; position: relative;">
+      <span onclick="toggleCart()" style="position: absolute; right: 20px; top: 15px; font-size: 24px; cursor: pointer;">&times;</span>
+      <h3>Ваше замовлення</h3>
+      <div id="cart-items-list" style="margin: 20px 0;"></div>
+      <div style="display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 20px;">
+        <span>Разом:</span> <span><span id="cart-total-sum">0</span> грн</span>
+      </div>
+      <form id="order-form">
+        <input type="text" id="client-name" placeholder="Ім'я Прізвище" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px;">
+        <input type="tel" id="client-phone" placeholder="Телефон" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px;">
+        <input type="text" id="client-np" placeholder="Місто та Нова Пошта" required style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px;">
+        <button type="submit" class="btn-primary" style="width: 100%; border: none;">Оформити</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/slider.js"></script>
+  <script src="js/burger.js"></script>
+  <script src="js/cart.js"></script>
+  <script id="wayforpay-sdk" src="https://secure.wayforpay.com/server/pay-widget.js"></script>
+  <script>
+    function closeMenu() {
+      document.getElementById('mobileMenu').classList.remove('active');
+      document.getElementById('burgerBtn').classList.remove('active');
+    }
+  </script>
+</body>
+</html>

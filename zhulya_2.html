@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Жуля-Рижуля: Подорож у серце океану — Передзамовлення</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root { --color-ocean: #0077be; }
+    .badge-new {
+      background: var(--color-ocean);
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-weight: bold;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">Жуля-Рижуля</div>
+      <nav class="nav-links">
+        <a href="index.html">Головна</a>
+        <a href="#description">Про пригоди</a>
+        <a href="#preorder">Передзамовлення</a>
+        <a href="#footer">Контакти</a>
+      </nav>
+      <div class="header-contact">
+        <a href="tel:+380988458007">+38 098 845-80-07</a>
+        <div class="cart" onclick="toggleCart()" style="cursor:pointer;">🛒 <span id="cart-count-header">0</span></div>
+      </div>
+      <button class="burger" id="burgerBtn">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Головна</a>
+    <a href="#description" onclick="closeMenu()">Про пригоди</a>
+    <a href="#preorder" onclick="closeMenu()">Передзамовлення</a>
+  </div>
+
+  <section class="hero" style="padding: 40px 0;">
+    <div class="container">
+      <div class="hero-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; align-items: center;">
+        
+        <div class="hero-media">
+          <div class="main-img-container" style="background: #f0f8ff; border-radius: 20px; padding: 20px; margin-bottom: 15px;">
+            <img id="mainImage" src="img/zhulya2-preview.jpg" alt="Жуля-Рижуля Подорож у серце океану" style="width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+          </div>
+          <div class="thumbnails-row" style="display: flex; gap: 10px; justify-content: center;">
+            <img src="img/zhulya2-preview.jpg" onclick="changeImage(this.src)" style="width: 70px; cursor: pointer; border-radius: 5px; border: 2px solid var(--color-ocean);">
+            <img src="img/zhulya2-page1.jpg" onclick="changeImage(this.src)" style="width: 70px; cursor: pointer; border-radius: 5px; opacity: 0.7;">
+            <img src="img/zhulya2-page2.jpg" onclick="changeImage(this.src)" style="width: 70px; cursor: pointer; border-radius: 5px; opacity: 0.7;">
+          </div>
+        </div>
+
+        <div class="hero-info">
+          <div class="badge-new">НОВИНКА 2026</div>
+          <h1 style="font-size: 32px; margin-bottom: 15px;">Жуля-Рижуля: Подорож у серце океану</h1>
+          <p style="font-size: 18px; color: #555; margin-bottom: 25px;">
+            Продовження захопливої історії! Цього разу відважна кицька Жуля залишає суходіл, щоб розгадати таємниці підводного світу.
+          </p>
+          
+          <div class="price-card" id="preorder">
+  <div style="font-size: 14px; color: #666; text-decoration: line-through;">400 грн</div>
+  <div class="current-price" data-product="zhulya2" style="font-size: 36px; font-weight: bold; color: var(--color-ocean); margin: 5px 0;">
+    350 грн
+  </div>
+  <p style="font-size: 13px; color: #00a651; margin-bottom: 15px;">● Спеціальна ціна за передзамовленням</p>
+  <button class="btn-primary" onclick="addToCart('Жуля-Рижуля 2', 350)">Замовити зараз</button>
+</div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="description" style="padding: 60px 0; background: #f9f9f9;">
+    <div class="container" style="max-width: 800px;">
+      <h2 style="text-align: center; margin-bottom: 30px;">Що чекає на героїв?</h2>
+      <div style="font-size: 18px; line-height: 1.8; color: #444;">
+        <p style="margin-bottom: 20px;">Кожна хвиля несе нові загадки! Жулю чекають затонулі кораблі, підводні печери та знайомство з дивовижними мешканцями океану — допитливою дельфінкою та мудрою черепахою.</p>
+        <ul style="list-style: none; padding: 0;">
+          <li style="margin-bottom: 10px;">🌊 <strong>Рятування королівства:</strong> Жуля допоможе захистити Підводний світ.</li>
+          <li style="margin-bottom: 10px;">🏴‍☠️ <strong>Зустріч з піратами:</strong> Чи вдасться Жулі перехитрити морських розбійників?</li>
+          <li style="margin-bottom: 10px;">⏳ <strong>Печера Часу:</strong> Остання загадка, яка змінить усе. Чи знайде Жуля шлях додому?</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer" style="background: #1a1a1a; color: #fff; padding: 60px 0 30px;">
+    <div class="container" style="text-align: center;">
+      <p>© 2024 Олександр Бірюк. Подорожуйте разом з нами!</p>
+      <a href="index.html" style="color: var(--color-ocean); display: inline-block; margin-top: 20px;">← Повернутися на головну</a>
+    </div>
+  </footer>
+
+  <div id="cart-modal" style="display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);">
+    <div style="background: white; margin: 20px auto; padding: 25px; width: 90%; max-width: 450px; border-radius: 20px; position: relative;">
+      <span onclick="toggleCart()" style="position: absolute; right: 20px; top: 15px; font-size: 24px; cursor: pointer;">&times;</span>
+      <h3>Ваше замовлення</h3>
+      <div id="cart-items-list" style="margin: 20px 0;"></div>
+      <div style="display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 20px;">
+        <span>Разом:</span> <span><span id="cart-total-sum">0</span> грн</span>
+      </div>
+      <form id="order-form">
+        <input type="text" id="client-name" placeholder="Ім'я Прізвище" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px;">
+        <input type="tel" id="client-phone" placeholder="Телефон" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px;">
+        <input type="text" id="client-np" placeholder="Місто та Нова Пошта" required style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px;">
+        <button type="submit" class="btn-primary" style="width: 100%; border: none;">Оформити передзамовлення</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/prices.js"></script>
+  <script src="js/slider.js"></script>
+  <script src="js/carousel.js"></script>
+  <script src="js/burger.js"></script>
+  <script src="js/sticky-buy.js"></script>
+  <script src="js/cart.js"></script>
+  <script id="wayforpay-sdk" src="https://secure.wayforpay.com/server/pay-widget.js"></script>
+  <script>
+    function changeImage(src) {
+      document.getElementById('mainImage').src = src;
+      document.querySelectorAll('.thumbnails-row img').forEach(img => {
+        img.style.opacity = (img.src === src) ? '1' : '0.7';
+        img.style.border = (img.src === src) ? '2px solid var(--color-ocean)' : 'none';
+      });
+    }
+    function closeMenu() {
+      document.getElementById('mobileMenu').classList.remove('active');
+    }
+  </script>
+</body>
+</html>

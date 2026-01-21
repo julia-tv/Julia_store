@@ -1,0 +1,500 @@
+/* ================= 1. ROOT & RESET ================= */
+:root {
+  --color-accent: #00a651;
+  --color-accent-hover: #008c44;
+  --color-text-main: #333333;
+  --color-text-light: #777;
+  --color-bg-light: #f9f9f9;
+  --color-white: #ffffff;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-card: 0 5px 20px rgba(0,0,0,0.08);
+  --container-width: 1200px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background: var(--color-bg-light);
+  color: var(--color-text-main);
+  line-height: 1.6;
+  padding-top: 60px; /* Compensation for fixed header if needed, otherwise 0 */
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ================= 2. BUTTONS ================= */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 36px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #2ecc71, #00a651);
+  color: var(--color-white);
+  font-size: 18px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 166, 81, 0.35);
+  transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+  text-align: center;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #34d983, #00b35a);
+  box-shadow: 0 12px 28px rgba(0, 166, 81, 0.45);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 14px rgba(0, 166, 81, 0.3);
+}
+
+/* ================= 3. HEADER ================= */
+.site-header {
+  background: var(--color-white);
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--color-accent);
+}
+
+.nav-links a {
+  margin: 0 15px;
+  font-weight: 500;
+  color: var(--color-text-main);
+  transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--color-accent); }
+
+.header-contact {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-weight: 600;
+}
+
+/* Burger Menu Icon */
+.burger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 30px;
+  height: 20px;
+  position: relative;
+  z-index: 1100;
+}
+
+.burger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #333;
+  transition: 0.3s;
+}
+
+.burger span:nth-child(1) { top: 0; }
+.burger span:nth-child(2) { top: 9px; }
+.burger span:nth-child(3) { bottom: 0; }
+
+.burger.active span:nth-child(1) { transform: rotate(45deg); top: 9px; }
+.burger.active span:nth-child(2) { opacity: 0; }
+.burger.active span:nth-child(3) { transform: rotate(-45deg); bottom: 9px; }
+
+/* Mobile Menu Dropdown */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #fff;
+  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  transform: translateY(-100%);
+  transition: transform 0.4s ease;
+  z-index: 999;
+}
+
+.mobile-menu.active { transform: translateY(0); }
+.mobile-menu a { font-size: 24px; font-weight: 700; color: #333; }
+
+/* ================= 4. HERO SECTION ================= */
+.hero {
+  background: #fff;
+  padding: 40px 0 60px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 колонки */
+  gap: 50px;
+  align-items: start;
+}
+
+/* Ліва колонка: Фото + Мініатюри */
+.hero-media {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  /* На десктопі рівняємо по лівому краю (за замовчуванням), або center, якщо хочете */
+}
+
+.main-image-wrapper {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  
+  /* --- ВИПРАВЛЕННЯ ДЛЯ ДЕСКТОПУ --- */
+  width: 100%; 
+  max-width: 350px; /* Зменшуємо розмір на десктопі (було занадто велике) */
+}
+
+.main-image-wrapper img {
+  width: 100%;
+  height: auto; /* ВАЖЛИВО: щоб не було витягнуто (не "сосиска") */
+  display: block;
+}
+
+.thumbnails-row {
+  display: flex;
+  gap: 10px;
+  /* На десктопі мініатюри зліва (якщо хочете по центру під книгою - змініть на center) */
+  justify-content: flex-start; 
+}
+
+.thumbnails-row img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.thumbnails-row img:hover, .thumbnails-row img.active {
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+/* Права колонка: Інформація */
+.hero-info h1 {
+  font-size: 48px;
+  line-height: 1.2;
+  margin-bottom: 15px;
+}
+
+.hero-subtitle {
+  font-size: 20px;
+  color: var(--color-text-light);
+  margin-bottom: 30px;
+}
+
+.hero-price-block {
+  margin-bottom: 30px;
+}
+
+.price-label {
+  font-size: 14px;
+  color: #777;
+  display: block;
+}
+
+.current-price {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--color-accent);
+}
+
+.book-meta {
+  background: #f5f5f5;
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-top: 30px;
+  font-size: 14px;
+}
+
+.book-meta p { margin-bottom: 8px; }
+
+/* ================= 5. CONTENT SECTIONS ================= */
+
+/* Description */
+.section-description {
+  padding: 60px 0;
+  background: var(--color-bg-light);
+}
+.content-max-width {
+  max-width: 800px; /* Narrower for readability */
+}
+.section-title {
+  font-size: 32px;
+  margin-bottom: 25px;
+  color: var(--color-text-main);
+}
+.text-block p { margin-bottom: 15px; }
+.text-block ul { padding-left: 20px; margin-bottom: 20px; }
+.text-block li { margin-bottom: 8px; list-style-type: disc; }
+
+/* Bundles */
+.section-bundles {
+  background: #fff;
+  padding: 60px 0;
+}
+.center-text { text-align: center; }
+
+.bundles-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.bundle-card {
+  background: var(--color-bg-light);
+  border: 1px solid #eee;
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.bundle-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-card);
+  border-color: var(--color-accent);
+}
+
+.bundle-card h3 { font-size: 22px; margin-bottom: 10px; }
+.bundle-desc { color: #777; margin-bottom: 20px; flex-grow: 1; }
+
+.price-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.old-price { text-decoration: line-through; color: #999; font-size: 18px; }
+.bundle-price { color: #d00000; font-weight: 800; font-size: 28px; }
+
+/* Reviews */
+.section-reviews {
+  padding: 60px 0;
+  background: var(--color-bg-light);
+}
+
+.reviews-scroller {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 10px 0 20px;
+}
+
+.review-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  min-width: 300px;
+  flex-shrink: 0;
+}
+
+/* CTA Bottom */
+.section-cta {
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-hover));
+  color: #fff;
+  text-align: center;
+  padding: 80px 20px;
+}
+.section-cta h2 { font-size: 36px; margin-bottom: 30px; }
+.section-cta .btn-primary { 
+  background: #fff; 
+  color: var(--color-accent); 
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+.section-cta .btn-primary:hover { background: #f0f0f0; }
+
+/* Footer */
+footer {
+  background: #222;
+  color: #fff;
+  padding: 50px 0 100px; /* Extra bottom padding for sticky button on mobile */
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.footer-col h4 { margin-bottom: 15px; color: var(--color-accent); }
+.social-links a { display: inline-block; margin-right: 15px; color: #ccc; }
+.social-links a:hover { color: var(--color-accent); }
+
+/* ================= 6. MOBILE STICKY BUY (Fixed) ================= */
+.mobile-sticky-buy {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  padding: 15px 20px;
+  box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+  z-index: 998;
+  display: none; /* Hidden on desktop */
+  text-align: center;
+}
+
+.sticky-btn-wrapper {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.mobile-sticky-buy .btn-primary {
+  width: 100%;
+  font-size: 20px;
+  padding: 14px;
+}
+
+/* ================= 7. MEDIA QUERIES (RESPONSIVE) ================= */
+@media (max-width: 768px) {
+  
+  /* Header */
+  .nav-links, .header-contact { display: none; }
+  .burger { display: block; }
+  
+  /* Hero Reordering */
+  .hero { padding-top: 20px; }
+  
+  .hero-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрує колонки гріда відносно одна одної */
+    gap: 20px;
+  }
+  
+  /* --- МЕДІА (ФОТО) --- */
+  .hero-media { 
+    order: 1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    width: 100%;
+  }
+
+  .main-image-wrapper {
+    margin: 0 auto; 
+    max-width: 380px; 
+  }
+
+  .thumbnails-row {
+    justify-content: center; 
+    width: 100%;
+  }
+
+  .thumbnails-row img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  /* --- ІНФО (ТЕКСТ ТА ЦІНА) --- */
+  .hero-info { 
+    order: 2; 
+    text-align: center; /* Центрує текст: заголовок, підзаголовок */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрує блочні елементи: плашку з мета-даними */
+    width: 100%;
+  }
+
+  .hero-info h1 { 
+    font-size: 28px; 
+    margin-bottom: 10px; 
+  }
+  
+  .hero-subtitle { 
+    font-size: 16px; 
+    margin-bottom: 20px; 
+  }
+  
+  .hero-price-block {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .current-price { 
+    font-size: 32px; 
+  }
+
+  .book-meta {
+    text-align: left; /* Текст всередині сірої плашки краще залишити по лівому краю для читабельності */
+    width: 100%;
+    max-width: 320px; /* Щоб плашка не була занадто широкою на мобільному */
+    margin-top: 20px;
+  }
+
+  /* Плаваючий кошик */
+
+  @media (max-width: 480px) {
+  #cart-modal > div {
+    margin: 10px auto !important;
+    width: 95% !important;
+    padding: 15px !important;
+  }
+}
+
+  /* Show Sticky Button */
+  .mobile-sticky-buy { display: block; }
+  
+  /* Hide standard Buy Button in Hero */
+  .hero-cta-desktop { display: none; }
+  
+  /* Інші секції */
+  .section-title { font-size: 26px; text-align: center; }
+  .section-cta h2 { font-size: 24px; }
+  .footer-content { flex-direction: column; align-items: center; text-align: center; }
+}
