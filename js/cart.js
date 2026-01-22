@@ -1,5 +1,6 @@
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
+// 1. Оновлення інтерфейсу
 function updateCartUI() {
   const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
   const totalSum = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
@@ -27,6 +28,7 @@ function updateCartUI() {
   localStorage.setItem('cart', JSON.stringify(cart));
 }
 
+// 2. Функції кошика
 function addToCart(title, price) {
   const existing = cart.find(i => i.title === title);
   if (existing) { existing.qty++; } 
@@ -48,7 +50,7 @@ function toggleCart(show = null) {
   else modal.style.display = (modal.style.display === 'block') ? 'none' : 'block';
 }
 
-// Захищений обробник замовлення
+// 3. ОБРОБКА ЗАМОВЛЕННЯ З ПІДПИСОМ
 const orderForm = document.getElementById('order-form');
 if (orderForm) {
   orderForm.addEventListener('submit', function(e) {
@@ -59,12 +61,14 @@ if (orderForm) {
       return;
     }
 
-    // Декодування конфіденційних даних "на льоту"
-    const _0x1a2b = (s) => atob(s);
-    const cfg = {
-        t: _0x1a2b('ODIwNjkwMjgyMzpBQUdiN3ZhSk9SYWhERkdQQXhsblNZOGhydHdaUXlPQmV1dw=='), // Token
-        c: _0x1a2b('MTI5NzkyNDQzNg=='), // ChatID
-        m: _0x1a2b('anVsaWFfdHZfZ2l0aHViX2lv') // Merchant
+    // --- НАЛАШТУВАННЯ ---
+    // Ваші зашифровані ключі (Bot, ChatID, MerchantLogin, SecretKey)
+    const decode = (str) => atob(str);
+    const CONFIG = {
+        botToken: decode('ODIwNjkwMjgyMzpBQUdiN3ZhSk9SYWhERkdQQXhsblNZOGhydHdaUXlPQmV1dw=='),
+        chatId: decode('MTI5NzkyNDQzNg=='),
+        merchantLogin: decode('anVsaWFfdHZfZ2l0aHViX2lv'), // julia_tv_github_io
+        merchantSecret: decode('ZjJkNGI4MjA2NTJiNzZkN2YyZjQwMDkyOGQ0M2E0MzE4Zjg1YTgxNg==') // f2d4...
     };
 
     const name = document.getElementById('client-name').value;
@@ -73,22 +77,49 @@ if (orderForm) {
     const total = document.getElementById('cart-total-sum').textContent;
     const itemsString = cart.map(i => `${i.title} (${i.qty}шт)`).join(', ');
 
+    // Підготовка даних для WayForPay
+    const orderRef = "Order_" + Date.now();
+    const orderDate = Math.floor(Date.now() / 1000);
+    const productNames = cart.map(i => i.title);
+    const productPrices = cart.map(i => i.price.toString());
+    const productCounts = cart.map(i => i.qty.toString());
+    const domainName = "julia-tv.github.io"; // Має співпадати з налаштуваннями кабінету
+
+    // --- ГЕНЕРАЦІЯ ПІДПИСУ (SIGNATURE) ---
+    // Порядок: merchantAccount;merchantDomainName;orderReference;orderDate;amount;currency;productName;productCount;productPrice
+    const stringToSign = [
+        CONFIG.merchantLogin,
+        domainName,
+        orderRef,
+        orderDate,
+        total,
+        "UAH",
+        productNames.join(";"),
+        productCounts.join(";"),
+        productPrices.join(";")
+    ].join(";");
+
+    // Створюємо хеш (підпис) використовуючи бібліотеку md5
+    const signature = md5.hmac(CONFIG.merchantSecret, stringToSign);
+
     const message = `📦 НОВЕ ЗАМОВЛЕННЯ\n👤 ${name}\n📞 ${phone}\n📍 ${address}\n🛒 ${itemsString}\n💰 Сума: ${total} грн`;
 
-    fetch(`https://api.telegram.org/bot${cfg.t}/sendMessage?chat_id=${cfg.c}&text=${encodeURIComponent(message)}`)
+    // 1. Спочатку пишемо в Telegram
+    fetch(`https://api.telegram.org/bot${CONFIG.botToken}/sendMessage?chat_id=${CONFIG.chatId}&text=${encodeURIComponent(message)}`)
     .then(() => {
+        // 2. Відкриваємо віджет оплати
         const wayforpay = new Wayforpay();
         wayforpay.run({
-            merchantAccount: cfg.m,
-            merchantDomainName: "julia-tv.github.io",
-            authorizationType: "SimpleSignature",
-            orderReference: "Order_" + Date.now(),
-            orderDate: Math.floor(Date.now() / 1000),
+            merchantAccount: CONFIG.merchantLogin,
+            merchantDomainName: domainName,
+            merchantSignature: signature, // <--- ОСЬ ЧОГО НЕ ВИСТАЧАЛО!
+            orderReference: orderRef,
+            orderDate: orderDate,
             amount: total.toString(),
             currency: "UAH",
-            productName: cart.map(i => i.title),
-            productPrice: cart.map(i => i.price.toString()),
-            productCount: cart.map(i => i.qty.toString()),
+            productName: productNames,
+            productPrice: productPrices,
+            productCount: productCounts,
             clientFirstName: name,
             clientPhone: phone
         },
@@ -100,11 +131,13 @@ if (orderForm) {
           orderForm.reset();
         },
         function (response) { 
-          alert('Замовлення прийнято! Оплату можна завершити пізніше або при отриманні.');
-          toggleCart(false);
+          console.log("Оплата не завершена або скасована");
         });
     })
-    .catch(err => alert("Помилка відправки. Спробуйте ще раз."));
+    .catch(err => {
+        console.error(err);
+        alert("Помилка. Перевірте інтернет з'єднання.");
+    });
   });
 }
 
