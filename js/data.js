@@ -1,23 +1,28 @@
 window.PRODUCTS = {
   epherium: {
     title: "Ефіріум",
-    price: 320,
+    price: 480,
     currency: "грн"
   },
   zhulya: {
     title: "Жуля-Рижуля",
-    price: 320,
+    price: 400,
     currency: "грн"
   },
   // Додаємо нову книгу сюди:
   zhulya2: {
     title: "Жуля-Рижуля: Подорож у серце океану",
-    price: 350,
+    price: 420,
     currency: "грн"
   },
   sketches: {
     title: "Асоціативні ескізи жіночності",
-    price: 450,
+    price: 350,
+    currency: "грн"
+  },
+    zhulya_coloring: {
+    title: "Велика розмальовка Жуля-Рижуля",
+    price: 200,
     currency: "грн"
   },
   bundles: {
