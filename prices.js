@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("PRODUCTS не знайдено у window");
     return;
   }
-
   document.querySelectorAll("[data-product]").forEach(el => {
     const keyPath = el.dataset.product.split('.'); // Розбиваємо шлях, наприклад ['bundles', 'epherium12', 'price']
     let result = window.PRODUCTS;
