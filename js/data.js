@@ -27,11 +27,11 @@ window.PRODUCTS = {
   },
   bundles: {
     epherium12: {
-      price: 990,
+      price: 970,
       oldPrice: 1200
     },
     epherium3: {
-      price: 690,
+      price: 680,
       oldPrice: 780
     }
   }
