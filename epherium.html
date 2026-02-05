@@ -69,11 +69,11 @@
         
         <div class="hero-price-block">
           <span class="price-label">Ціна:</span>
-          <span class="current-price" data-product="epherium">320 грн</span>
+          <span class="current-price" data-product="epherium.price">320 грн</span>
         </div>
 
         <div class="hero-cta-desktop">
-          <button class="btn-primary" onclick="addToCart('Ефіріум', 320)">
+          <button class="btn-primary" onclick="addToCartByData(this, 'epherium')">
             Купити зараз
           </button>
         </div>
@@ -115,22 +115,25 @@
           <h3>Ефіріум + Мініатюри 5мл ×12</h3>
           <p class="bundle-desc">Книга + повний набір ефірних олій (12 шт)</p>
           <div class="price-row">
-            <span class="old-price">1200 грн</span>
-            <span class="bundle-price">990 грн</span>
+            <span class="old-price"><span data-product="bundles.epherium12.oldPrice">1200</span> грн</span>
+            <span class="bundle-price">
+              <span data-product="bundles.epherium12.price">990 грн</span>
+            </span>
           </div>
-          <button class="btn-primary" onclick="addToCart('Ефіріум + Мініатюри 12шт', 990)">Купити набір</button>
+          <button class="btn-primary" onclick="addToCartByData(this, 'bundles.epherium12')">Купити набір</button> 
         </div>
-
+        
         <div class="bundle-card">
           <h3>Ефіріум + Мініатюри 5мл ×3</h3>
-          <p class="bundle-desc">Книга + набір ефірних олій (3 шт)</p>
+          <p class="bundle-desc">Книга + повний набір ефірних олій (3 шт)</p>
           <div class="price-row">
-            <span class="old-price">780 грн</span>
-            <span class="bundle-price">690 грн</span>
+            <span class="old-price"><span data-product="bundles.epherium3.oldPrice">780</span> грн</span>
+            <span class="bundle-price">
+              <span data-product="bundles.epherium3.price">690 грн</span>
+            </span>
           </div>
-          <button class="btn-primary" onclick="addToCart('Ефіріум + Мініатюри 3шт', 690)">Купити набір</button>
+          <button class="btn-primary" onclick="addToCartByData(this, 'bundles.epherium3')">Купити набір</button> 
         </div>
-
       </div>
     </div>
   </section>
@@ -155,7 +158,7 @@
   <section class="section-cta">
     <div class="container">
       <h2>Замовляйте «Ефіріум» вже сьогодні</h2>
-      <button class="btn-primary" onclick="addToCart('Ефіріум', 320)">Купити книгу зараз</button>
+      <button class="btn-primary" onclick="addToCartByData(this, 'epherium')">Купити книгу зараз</button>
     </div>
   </section>
 
@@ -176,15 +179,15 @@
         </div>
       </div>
     </div>
-       <div class="container" style="text-align: center;">
+    <div class="container" style="text-align: center;">
       <a href="index.html" style="color: var(--color-ocean); display: inline-block; margin-top: 20px;">← Повернутися на головну</a>
     </div>
   </footer>
 
   <div class="mobile-sticky-buy">
     <div class="sticky-btn-wrapper">
-      <button class="btn-primary" onclick="addToCart('Ефіріум', 320)">
-        Купити за 320 грн
+      <button class="btn-primary" onclick="addToCartByData(this, 'epherium')">
+        Купити за&nbsp;<span data-product="epherium.price">320 грн</span>
       </button>
     </div>
   </div>
@@ -217,7 +220,6 @@
   </div>
 
   <script>
-    // Функція для зміни головного фото (галерея)
     function changeImage(src) {
       document.getElementById('mainImage').src = src;
       document.querySelectorAll('.thumbnails-row img').forEach(img => {
@@ -225,7 +227,6 @@
         if(img.src.includes(src)) img.classList.add('active');
       });
     }
-    // Функція для закриття меню при кліку на посилання
     function closeMenu() {
       document.getElementById('mobileMenu').classList.remove('active');
       document.getElementById('burgerBtn').classList.remove('active');
