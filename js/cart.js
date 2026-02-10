@@ -1,51 +1,146 @@
-const crypto = require('crypto');
+/* ==========================
+   CART STATE & UI
+========================== */
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-export default function handler(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+window.updateCartUI = function() {
+    const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+    const totalSum = cart.reduce((s, i) => s + i.qty * i.price, 0);
 
-    if (req.method === 'OPTIONS') return res.status(200).end();
+    // Оновлення лічильників
+    const counts = ["cart-count-header", "cart-count-mobile", "cart-count-badge"];
+    counts.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = totalQty;
+    });
 
-    try {
-        // Якщо даних немає (наприклад, просто зайшли в браузер), не видаємо помилку 500
-        if (!req.body || !req.body.amount) {
-            return res.status(200).json({ message: "API працює, чекаю на POST запит" });
+    const list = document.getElementById("cart-items-list");
+    const sumEl = document.getElementById("cart-total-sum");
+
+    if (list) {
+        if (cart.length === 0) {
+            list.innerHTML = "<p style='text-align:center; padding: 20px;'>Кошик порожній</p>";
+        } else {
+            list.innerHTML = cart.map((item, idx) => `
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #eee">
+                    <div style="flex: 1;">
+                        <div style="font-weight:bold; font-size: 14px;">${item.title}</div>
+                        <small style="color: #666;">${item.qty} x ${item.price} грн</small>
+                    </div>
+                    <button onclick="window.removeFromCart(${idx})" style="background:none; border:none; color:#ff4d4d; cursor:pointer; padding: 5px 10px; font-size: 18px;">✕</button>
+                </div>
+            `).join('');
         }
-
-        const { amount, currency, productName, productCount, productPrice } = req.body;
-        const MERCHANT_ACCOUNT = process.env.WFP_ACCOUNT || "test_merch_n1";
-        const MERCHANT_SECRET_KEY = process.env.WFP_SECRET || "flk3409refn54t54t*FNJRET";
-        const DOMAIN_NAME = "julia-tv.github.io"; 
-
-        const orderReference = "ORD_" + Date.now();
-        const orderDate = Math.floor(Date.now() / 1000);
-
-        const stringToSign = [
-            MERCHANT_ACCOUNT,
-            DOMAIN_NAME,
-            orderReference,
-            orderDate,
-            amount,
-            currency,
-            productName.join(';'),
-            productCount.join(';'),
-            productPrice.join(';')
-        ].join(';');
-
-        const signature = crypto
-            .createHmac('md5', MERCHANT_SECRET_KEY)
-            .update(stringToSign, 'utf8')
-            .digest('hex');
-
-        res.status(200).json({
-            signature,
-            orderReference,
-            orderDate,
-            merchantAccount: MERCHANT_ACCOUNT,
-            merchantDomainName: DOMAIN_NAME
-        });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
     }
-}
+    
+    if (sumEl) sumEl.textContent = totalSum;
+    localStorage.setItem('cart', JSON.stringify(cart));
+};
+
+window.removeFromCart = function(index) {
+    cart.splice(index, 1);
+    window.updateCartUI();
+};
+
+window.addToCartByData = function(element, keyPath) {
+    if (!window.PRODUCTS) {
+        console.error("Помилка: window.PRODUCTS не завантажено");
+        return;
+    }
+
+    const parts = keyPath.split('.');
+    let data = window.PRODUCTS;
+    parts.forEach(p => { if(data) data = data[p]; });
+
+    if (data && data.price) {
+        const existing = cart.find(i => i.title === data.title);
+        if (existing) {
+            existing.qty++;
+        } else {
+            cart.push({ 
+                title: data.title || "Товар", 
+                price: data.price, 
+                qty: 1 
+            });
+        }
+        window.updateCartUI();
+        alert("Додано в кошик!");
+    } else {
+        console.warn("Дані товару не знайдено для:", keyPath);
+    }
+};
+
+/* ==========================
+   WAYFORPAY INTEGRATION
+========================== */
+document.addEventListener('DOMContentLoaded', () => {
+    const orderForm = document.getElementById('order-form');
+    if (orderForm) {
+        orderForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            if (cart.length === 0) return alert("Кошик порожній!");
+
+            const nameEl = document.getElementById('client-name');
+            const phoneEl = document.getElementById('client-phone');
+            
+            if (!nameEl || !phoneEl) return console.error("Поля форми не знайдені");
+
+            const name = nameEl.value;
+            const phone = phoneEl.value;
+            const totalAmount = cart.reduce((s, i) => s + i.qty * i.price, 0);
+
+            const VERCEL_API_URL = 'https://julia-store.vercel.app/api/sign';
+
+            try {
+                const response = await fetch(VERCEL_API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        amount: totalAmount,
+                        currency: "UAH",
+                        productName: cart.map(i => i.title),
+                        productPrice: cart.map(i => i.price),
+                        productCount: cart.map(i => i.qty)
+                    })
+                });
+
+                if (!response.ok) throw new Error("Сервер підпису не відповів");
+
+                const data = await response.json();
+                const wayforpay = new Wayforpay();
+                
+                wayforpay.run({
+                    merchantAccount: data.merchantAccount,
+                    merchantDomainName: data.merchantDomainName,
+                    authorizationType: "SimpleSignature",
+                    merchantSignature: data.signature,
+                    orderReference: data.orderReference,
+                    orderDate: data.orderDate,
+                    amount: totalAmount.toString(),
+                    currency: "UAH",
+                    productName: cart.map(i => i.title),
+                    productPrice: cart.map(i => i.price),
+                    productCount: cart.map(i => i.qty),
+                    clientFirstName: name,
+                    clientPhone: phone
+                },
+                function (res) { // Success
+                    alert("Оплата успішна! Дякуємо за замовлення.");
+                    cart = [];
+                    window.updateCartUI();
+                    orderForm.reset();
+                },
+                function (res) { // Error
+                    console.log("Відмова:", res);
+                    alert("Оплата не була завершена.");
+                });
+
+            } catch (err) {
+                alert("Помилка з'єднання з сервером оплати.");
+                console.error(err);
+            }
+        });
+    }
+    window.updateCartUI();
+});
