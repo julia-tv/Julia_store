@@ -144,3 +144,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     window.updateCartUI();
 });
+
+/* ==========================
+   ВІДКРИТТЯ/ЗАКРИТТЯ КОШИКА
+========================== */
+window.toggleCart = function() {
+    const modal = document.getElementById('cart-modal');
+    if (modal) {
+        const isHidden = modal.style.display === 'none' || modal.style.display === '';
+        modal.style.display = isHidden ? 'block' : 'none';
+        
+        // Якщо відкриваємо, оновлюємо вигляд
+        if (isHidden) {
+            window.updateCartUI();
+        }
+    }
+};
