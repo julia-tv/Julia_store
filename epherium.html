@@ -119,42 +119,26 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
-  <script id="widget-wfp-script" src="https://secure.wayforpay.com/server/pay-widget.js"></script>
-  
-  <script src="js/data.js"></script>
-  <script src="js/prices.js"></script>
-  <script src="js/cart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
+<script id="widget-wfp-script" src="https://secure.wayforpay.com/server/pay-widget.js"></script>
 
-  <script>
-    function changeImage(src) {
-      document.getElementById('mainImage').src = src;
-      document.querySelectorAll('.thumbnails-row img').forEach(img => {
-        img.style.border = img.src === src ? '2px solid var(--color-accent)' : 'none';
-      });
-    }
+<script src="js/data.js?v=3"></script>
+<script src="js/prices.js?v=3"></script>
 
-    function closeMenu() {
-      document.getElementById('mobileMenu').classList.remove('active');
-      document.getElementById('burgerBtn').classList.remove('active');
-    }
+<script src="js/cart.js?v=3"></script>
 
-    // Оновлена функція toggleCart для сторінки товару
-    window.toggleCart = function() {
-        const modal = document.getElementById('cart-modal');
-        const devNotice = document.querySelector('.dev-notice');
-        if (modal) {
-            const isHidden = modal.style.display === 'none' || modal.style.display === '';
-            if (isHidden) {
-                modal.style.display = 'block';
-                if (devNotice) devNotice.style.display = 'none';
-                if (window.updateCartUI) window.updateCartUI();
-            } else {
-                modal.style.display = 'none';
-                if (devNotice) devNotice.style.display = 'block';
-            }
-        }
-    };
-  </script>
+<script src="js/slider.js?v=3"></script>
+<script src="js/carousel.js?v=3"></script>
+<script src="js/burger.js?v=3"></script>
+
+<script>
+  // Функція закриття меню для мобільної версії
+  window.closeMenu = function() {
+    const menu = document.getElementById('mobileMenu');
+    const btn = document.getElementById('burgerBtn');
+    if (menu) menu.classList.remove('active');
+    if (btn) btn.classList.remove('active');
+  };
+</script>
 </body>
 </html>
