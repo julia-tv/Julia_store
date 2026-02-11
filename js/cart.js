@@ -151,13 +151,20 @@ document.addEventListener('DOMContentLoaded', () => {
 ========================== */
 window.toggleCart = function() {
     const modal = document.getElementById('cart-modal');
+    const devNotice = document.querySelector('.dev-notice'); // Знаходимо плашку оголошення
+    
     if (modal) {
         const isHidden = modal.style.display === 'none' || modal.style.display === '';
-        modal.style.display = isHidden ? 'block' : 'none';
         
-        // Якщо відкриваємо, оновлюємо вигляд
         if (isHidden) {
+            // Відкриваємо кошик
+            modal.style.display = 'block';
+            if (devNotice) devNotice.classList.add('hidden'); // Ховаємо ремонтні роботи
             window.updateCartUI();
+        } else {
+            // Закриваємо кошик
+            modal.style.display = 'none';
+            if (devNotice) devNotice.classList.remove('hidden'); // Повертаємо ремонтні роботи
         }
     }
 };
