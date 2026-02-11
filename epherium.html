@@ -3,38 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://secure.wayforpay.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://secure.wayforpay.com; img-src 'self' data: https:; connect-src 'self' https://api.telegram.org https://secure.wayforpay.com https://cdnjs.cloudflare.com;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://secure.wayforpay.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://secure.wayforpay.com https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.telegram.org https://secure.wayforpay.com https://cdnjs.cloudflare.com https://julia-store.vercel.app;">
+  
   <title>Ефіріум — Магія у кожній краплі</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="hero-style.css">
 </head>
 <body>
 
   <div class="dev-notice">
-  <div class="dev-notice-inner">
-    <strong>Сайт у процесі розробки та оновлення</strong> — деякі функції (кошик, оплата онлайн) можуть працювати нестабільно. 
-    <br class="mobile-br">
-    <br>Замовляйте зручно <strong>за телефоном:</strong> 
-    <a href="tel:+380988458007" class="phone-link">+38 098 845-80-07</a>
+    <div class="dev-notice-inner">
+      <strong>Сайт у процесі розробки та оновлення</strong> — деякі функції (кошик, оплата онлайн) можуть працювати нестабільно. 
+      <br class="mobile-br">
+      <br>Замовляйте зручно <strong>за телефоном:</strong> 
+      <a href="tel:+380988458007" class="phone-link">+38 098 845-80-07</a>
+    </div>
   </div>
-</div>
 
   <header class="site-header">
     <div class="container header-inner">
-      <div class="logo">Жуля-Рижуля</div>
-      
+      <div class="logo"><a href="index.html" style="color: inherit;">Жуля-Рижуля</a></div>
       <nav class="nav-links">
         <a href="index.html">Головна</a>
-        <a href="#description">Про книгу</a>
-        <a href="#bundles">Набори</a>
-        <a href="#footer">Контакти</a>
+        <a href="index.html#books">Книги</a>
+        <a href="index.html#bundles">Набори</a>
+        <a href="index.html#about">Про автора</a>
+        <a href="https://www.youtube.com/@z_kazkou_do_peremogy" target="_blank">YouTube</a>
       </nav>
-
       <div class="header-contact">
         <a href="tel:+380988458007">+38 098 845-80-07</a>
         <div class="cart" onclick="toggleCart()" style="cursor:pointer;">🛒 <span id="cart-count-header">0</span></div>
       </div>
-
-      <button class="burger" id="burgerBtn" aria-label="Меню">
+      <button class="burger" id="burgerBtn" onclick="document.getElementById('mobileMenu').classList.toggle('active'); this.classList.toggle('active');">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -42,206 +42,119 @@
 
   <div class="mobile-menu" id="mobileMenu">
     <a href="index.html">Головна</a>
-    <a href="#description" onclick="closeMenu()">Про книгу</a>
-    <a href="#bundles" onclick="closeMenu()">Набори</a>
-    <a href="#footer" onclick="closeMenu()">Контакти</a>
+    <a href="index.html#books" onclick="closeMenu()">Книги</a>
+    <a href="index.html#bundles" onclick="closeMenu()">Набори</a>
+    <a href="index.html#about" onclick="closeMenu()">Про автора</a>
+    <a href="#" onclick="toggleCart(); closeMenu();">Кошик (🛒 <span id="cart-count-mobile">0</span>)</a>
   </div>
 
-  <section class="hero" id="hero">
-    <div class="container hero-grid">
-      
-      <div class="hero-media">
-        <div class="main-image-wrapper">
-          <img id="mainImage" src="img/epherium-cover.jpg" alt="Книга Ефіріум" width="600" height="800">
-        </div>
-        <div class="thumbnails-row">
-          <img src="img/epherium-cover.jpg" onclick="changeImage(this.src)" class="active" alt="Cover">
-          <img src="img/page1.jpg" onclick="changeImage(this.src)" alt="Page 1">
-          <img src="img/page2.jpg" onclick="changeImage(this.src)" alt="Page 2">
-          <img src="img/page3.jpg" onclick="changeImage(this.src)" alt="Page 3">
-          <img src="img/page4.jpg" onclick="changeImage(this.src)" alt="Page 4">
-        </div>
+  <main class="container" style="padding: 40px 20px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; align-items: start;">
+      <div class="product-gallery">
+        <img src="img/epherium-cover.jpg" id="mainImage" alt="Ефіріум" style="width: 100%; border-radius: 20px; box-shadow: var(--shadow-card);">
+        <div class="thumbnails-row" style="display: flex; gap: 10px; margin-top: 15px;">
+           <img src="img/epherium-cover.jpg" onclick="changeImage(this.src)" class="active" style="width: 80px; cursor: pointer; border-radius: 8px;">
+           </div>
       </div>
 
-      <div class="hero-info">
-        <h1>Ефіріум</h1>
-        <p class="hero-subtitle">Магія у кожній краплі — чарівні історії для дітей від 0 до 12 років</p>
-        
-        <div class="hero-price-block">
-          <span class="price-label">Ціна:</span>
-          <span class="current-price" data-product="epherium.price">320 грн</span>
+      <div class="product-info">
+        <h1 style="font-size: 32px; margin-bottom: 15px;">Ефіріум</h1>
+        <div style="background: #f0fdf4; padding: 10px 20px; border-radius: 10px; display: inline-block; margin-bottom: 20px;">
+          <span style="font-size: 24px; font-weight: bold; color: var(--color-accent);" data-product="epherium">0 грн</span>
         </div>
-
-        <div class="hero-cta-desktop">
-          <button class="btn-primary" onclick="addToCartByData(this, 'epherium')">
-            Купити зараз
-          </button>
-        </div>
-
-        <div class="book-meta">
-          <p><strong>Автор:</strong> Олександр Бірюк</p>
-          <p><strong>Мова:</strong> Українська</p>
-          <p><strong>Формат:</strong> 8.5 x 11 дюймів, 48 сторінок</p>
-          <p><strong>ISBN:</strong> 979-8275307368</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="section-description" id="description">
-    <div class="container content-max-width">
-      <h2 class="section-title">Про книгу</h2>
-      <div class="text-block">
-        <p>Відкрийте магію ефірних олій разом із Софі у «Ефіріумі» — книзі, про яку говорять усі батьки! Коли маленька Софі знаходить старовинну скриньку з яскравими флаконами у новому будинку, її життя назавжди змінюється. Духи лаванди, м’яти, лимону та інших ефірних олій оживають, допомагаючи подолати страхи, знайти друзів, відчути сміливість на сцені та відкрити свою справжню долю.</p>
-        <ul>
-          <li>7 захопливих казкових розділів — кожен з терапевтичною ефірною олією</li>
-          <li>Розвиває емоційний інтелект — допомагає справлятися з тривогою та страхами</li>
-          <li>Красиві ілюстрації на кожній сторінці</li>
-          <li>QR-код всередині — слухайте, як автор читає історії (ідеально на ніч)</li>
-          <li>Створено сертифікованими аромапсихологами — безпечно та навчально</li>
-        </ul>
-        <p>«Ефіріум» стане улюбленим супутником перед сном для вашої дитини.</p>
+        <p style="font-size: 18px; line-height: 1.8; color: #444; margin-bottom: 25px;">
+          Це не просто книга, це подорож у світ магії та самопізнання. "Ефіріум" відкриває двері до уяви, де кожна сторінка наповнена світлом та глибоким змістом.
+        </p>
+        <button class="btn-primary" onclick="addToCartByData(this, 'epherium')" style="width: 100%; padding: 20px; font-size: 18px; border: none;">Додати у кошик</button>
       </div>
     </div>
-  </section>
+  </main>
 
-  <section class="section-bundles" id="bundles">
+  <footer id="footer" style="background: #1a1a1a; color: #fff; padding: 60px 0 30px; margin-top: 60px;">
     <div class="container">
-      <h2 class="section-title center-text">Вигідні набори з Ефіріумом</h2>
-      <div class="bundles-grid">
-        
-        <div class="bundle-card">
-          <h3>Ефіріум + Мініатюри 5мл ×12</h3>
-          <p class="bundle-desc">Книга + повний набір ефірних олій (12 шт)</p>
-          <div class="price-row">
-            <span class="old-price"><span data-product="bundles.epherium12.oldPrice">1200</span> грн</span>
-            <span class="bundle-price">
-              <span data-product="bundles.epherium12.price">990 грн</span>
-            </span>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 50px;">
+        <div>
+          <h4 style="color: var(--color-accent); margin-bottom: 20px;">Контакти</h4>
+          <p style="margin-bottom: 10px;">📞 +38 098 845-80-07</p>
+          <p style="margin-bottom: 10px;">✉️ movanataliya1991@gmail.com</p>
+          <p>📍 Конотоп, Україна</p>
+        </div>
+        <div>
+          <h4 style="color: var(--color-accent); margin-bottom: 20px;">Інформація</h4>
+          <ul style="line-height: 2.2;">
+            <li><a href="politika.html" style="color: #bbb;">Публічна оферта</a></li>
+            <li><a href="refund_policy.html" style="color: #bbb;">Доставка, оплата та повернення</a></li>
+            <li><a href="contacts.html" style="color: #bbb;">Контактна інформація та реквізити</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: var(--color-accent); margin-bottom: 20px;">Ми в мережі</h4>
+          <div style="display: flex; gap: 20px;">
+            <a href="#" style="color: #fff;">FB</a>
+            <a href="#" style="color: #fff;">IG</a>
+            <a href="https://www.youtube.com/@z_kazkou_do_peremogy" style="color: #fff;">YT</a>
           </div>
-          <button class="btn-primary" onclick="addToCartByData(this, 'bundles.epherium12')">Купити набір</button> 
-        </div>
-        
-        <div class="bundle-card">
-          <h3>Ефіріум + Мініатюри 5мл ×3</h3>
-          <p class="bundle-desc">Книга + повний набір ефірних олій (3 шт)</p>
-          <div class="price-row">
-            <span class="old-price"><span data-product="bundles.epherium3.oldPrice">780</span> грн</span>
-            <span class="bundle-price">
-              <span data-product="bundles.epherium3.price">690 грн</span>
-            </span>
-          </div>
-          <button class="btn-primary" onclick="addToCartByData(this, 'bundles.epherium3')">Купити набір</button> 
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="section-reviews">
-    <div class="container">
-      <h2 class="section-title center-text">Відгуки батьків</h2>
-      <div class="reviews-scroller">
-        <div class="review-card">
-          <p><strong>Юлія Ковтун:</strong> «Дуже яскрава книга з великими малюнками. Дітям сподобалось, сама читала з задоволенням.»</p>
-        </div>
-        <div class="review-card">
-          <p><strong>Олена:</strong> «Чудові ілюстрації, казка сподобалась і дитині, і мені. Рекомендую!»</p>
-        </div>
-        <div class="review-card">
-          <p><strong>Марія:</strong> «Гарна книга, чудові поради для батьків та дітей. Аудіоверсія — супер.»</p>
-        </div>
+      <div style="text-align: center; border-top: 1px solid #333; padding-top: 30px; font-size: 14px; color: #666;">
+        © 2024 Олександр Бірюк. ФОП Бірюк Наталія Миколаївна.
       </div>
-    </div>
-  </section>
-
-  <section class="section-cta">
-    <div class="container">
-      <h2>Замовляйте «Ефіріум» вже сьогодні</h2>
-      <button class="btn-primary" onclick="addToCartByData(this, 'epherium')">Купити книгу зараз</button>
-    </div>
-  </section>
-
-  <footer id="footer">
-    <div class="container footer-content">
-      <div class="footer-col">
-        <h4>Контакти</h4>
-        <p>store@zhulya.ua</p>
-        <p>+38 098 845-80-07</p>
-        <p>Конотоп, Україна</p>
-      </div>
-      <div class="footer-col">
-        <h4>Ми в соцмережах</h4>
-        <div class="social-links">
-          <a href="#">Facebook</a>
-          <a href="#">Instagram</a>
-          <a href="#">YouTube</a>
-        </div>
-      </div>
-    </div>
-    <div class="container" style="text-align: center;">
-      <a href="index.html" style="color: var(--color-ocean); display: inline-block; margin-top: 20px;">← Повернутися на головну</a>
     </div>
   </footer>
 
-  <div class="mobile-sticky-buy">
-    <div class="sticky-btn-wrapper">
-      <button class="btn-primary" onclick="addToCartByData(this, 'epherium')">
-        Купити за&nbsp;<span data-product="epherium.price">320 грн</span>
-      </button>
-    </div>
-  </div>
-
-  <div id="mobile-cart-float" onclick="toggleCart()" style="display: none; position: fixed; bottom: 90px; right: 20px; background: var(--color-accent); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1001; cursor: pointer;">
-    🛒
-    <span id="cart-count-float" style="position: absolute; top: -5px; right: -5px; background: #ff4d4d; color: white; font-size: 12px; font-weight: bold; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid white;">0</span>
-  </div>
-
   <div id="cart-modal" style="display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);">
-    <div style="background: white; margin: 50px auto; padding: 25px; width: 90%; max-width: 450px; border-radius: 20px; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
-      <span onclick="toggleCart()" style="position: absolute; right: 20px; top: 15px; font-size: 24px; cursor: pointer; color: #999;">&times;</span>
-      <h3 style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px;">Ваше замовлення</h3>
-      
-      <div id="cart-items-list" style="max-height: 200px; overflow-y: auto; margin-bottom: 20px;">
-        </div>
-      
-      <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 18px; margin-bottom: 20px;">
-        <span>Разом до оплати:</span>
-        <span><span id="cart-total-sum">0</span> грн</span>
+    <div style="background: white; margin: 10px auto; padding: 25px; width: 90%; max-width: 450px; border-radius: 20px; position: relative;">
+      <span onclick="toggleCart()" style="position: absolute; right: 20px; top: 15px; font-size: 24px; cursor: pointer;">&times;</span>
+      <h3>Ваше замовлення</h3>
+      <div id="cart-items-list" style="margin: 20px 0;"></div>
+      <div style="display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 20px;">
+        <span>Разом:</span> <span><span id="cart-total-sum">0</span> грн</span>
       </div>
-
       <form id="order-form">
-        <input type="text" id="client-name" placeholder="Прізвище та Ім'я" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px;">
-        <input type="tel" id="client-phone" placeholder="Номер телефону" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px;">
-        <input type="text" id="client-np" placeholder="Місто та № відділення Нової Пошти" required style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px;">
-        <button type="submit" class="btn-primary" style="width: 100%; border: none;">Оформити замовлення</button>
+        <input type="text" id="client-name" placeholder="Ім'я Прізвище" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px;">
+        <input type="tel" id="client-phone" placeholder="Телефон" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px;">
+        <input type="text" id="client-np" placeholder="Місто та Нова Пошта" required style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px;">
+        <button type="submit" class="btn-primary" style="width: 100%; border: none;">Оформити</button>
       </form>
     </div>
   </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
+  <script id="widget-wfp-script" src="https://secure.wayforpay.com/server/pay-widget.js"></script>
+  
+  <script src="js/data.js"></script>
+  <script src="js/prices.js"></script>
+  <script src="js/cart.js"></script>
 
   <script>
     function changeImage(src) {
       document.getElementById('mainImage').src = src;
       document.querySelectorAll('.thumbnails-row img').forEach(img => {
-        img.classList.remove('active');
-        if(img.src.includes(src)) img.classList.add('active');
+        img.style.border = img.src === src ? '2px solid var(--color-accent)' : 'none';
       });
     }
+
     function closeMenu() {
       document.getElementById('mobileMenu').classList.remove('active');
       document.getElementById('burgerBtn').classList.remove('active');
     }
-  </script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
-  <script id="widget-wfp-script" src="https://secure.wayforpay.com/server/pay-widget.js"></script>
-  <script src="js/data.js"></script>
-  <script src="js/prices.js"></script>
-  <script src="js/slider.js"></script>
-  <script src="js/carousel.js"></script>
-  <script src="js/burger.js"></script>
-  <script src="js/sticky-buy.js"></script>
-  <script src="js/cart.js"></script>
-  <script id="widget-wfp-script" language="javascript" type="text/javascript" src="https://secure.wayforpay.com/server/pay-widget.js"></script>
+    // Оновлена функція toggleCart для сторінки товару
+    window.toggleCart = function() {
+        const modal = document.getElementById('cart-modal');
+        const devNotice = document.querySelector('.dev-notice');
+        if (modal) {
+            const isHidden = modal.style.display === 'none' || modal.style.display === '';
+            if (isHidden) {
+                modal.style.display = 'block';
+                if (devNotice) devNotice.style.display = 'none';
+                if (window.updateCartUI) window.updateCartUI();
+            } else {
+                modal.style.display = 'none';
+                if (devNotice) devNotice.style.display = 'block';
+            }
+        }
+    };
+  </script>
 </body>
 </html>
