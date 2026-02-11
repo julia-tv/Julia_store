@@ -90,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const phone = phoneEl.value;
             const totalAmount = cart.reduce((s, i) => s + i.qty * i.price, 0);
 
+            // Ваш реальний API URL на Vercel
             const VERCEL_API_URL = 'https://julia-store.vercel.app/api/sign';
 
             try {
@@ -111,8 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const wayforpay = new Wayforpay();
                 
                 wayforpay.run({
-                    merchantAccount: data.merchantAccount,
-                    merchantDomainName: data.merchantDomainName,
+                    merchantAccount: "julia_tv_github_io", // Ваші робочі дані
+                    merchantDomainName: "julia-tv.github.io", 
                     authorizationType: "SimpleSignature",
                     merchantSignature: data.signature,
                     orderReference: data.orderReference,
