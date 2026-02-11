@@ -556,3 +556,8 @@ footer {
     padding: 0 10px;
   }
 }
+
+/* Клас для приховання плашки оголошення */
+.dev-notice.hidden {
+  display: none !important;
+}
