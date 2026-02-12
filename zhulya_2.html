@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://secure.wayforpay.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://secure.wayforpay.com https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.telegram.org https://secure.wayforpay.com https://cdnjs.cloudflare.com;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://secure.wayforpay.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://secure.wayforpay.com https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.telegram.org https://secure.wayforpay.com https://cdnjs.cloudflare.com https://julia-store.vercel.app;">
   
   <title>Жуля-Рижуля: Подорож у серце океану — Передзамовлення</title>
   
   <link rel="stylesheet" href="style.css">
   
   <style>
-    /* Додаткові стилі суто для цієї сторінки */
+    /* Додаткові стилі для океанської тематики */
     :root { --color-ocean: #0077be; }
     
     .badge-preorder {
@@ -35,6 +35,16 @@
       color: #0277bd;
       font-size: 14px;
       display: inline-block;
+      border: 1px solid #b3e5fc;
+    }
+    
+    /* Стиль для кнопки передзамовлення */
+    .btn-preorder {
+        background: linear-gradient(135deg, #0077be, #005c99) !important;
+        box-shadow: 0 8px 20px rgba(0, 119, 190, 0.35) !important;
+    }
+    .btn-preorder:hover {
+        background: linear-gradient(135deg, #0088cc, #0066aa) !important;
     }
   </style>
 </head>
@@ -51,7 +61,7 @@
 
   <header class="site-header">
     <div class="container header-inner">
-      <div class="logo">Жуля-Рижуля</div>
+      <div class="logo"><a href="index.html" style="color: inherit;">Жуля-Рижуля</a></div>
       
       <nav class="nav-links">
         <a href="index.html">Головна</a>
@@ -90,9 +100,9 @@
           <img id="mainImage" src="img/zhulya2-preview.jpg" alt="Обкладинка: Подорож у серце океану" width="600" height="800">
         </div>
         <div class="thumbnails-row">
-          <img src="img/zhulya2-preview.jpg" onclick="changeImage(this.src)" class="active" alt="Cover">
-          <img src="img/zhulya2-page1.jpg" onclick="changeImage(this.src)" alt="Sketch 1" onerror="this.style.display='none'">
-          <img src="img/zhulya2-page2.jpg" onclick="changeImage(this.src)" alt="Sketch 2" onerror="this.style.display='none'">
+          <img src="img/zhulya2-preview.jpg" onclick="changeImage(this.src)" class="active" alt="Cover" style="border: 2px solid var(--color-ocean);">
+          <img src="img/zhulya2-page1.jpg" onclick="changeImage(this.src)" alt="Ескіз 1" onerror="this.style.display='none'">
+          <img src="img/zhulya2-page2.jpg" onclick="changeImage(this.src)" alt="Ескіз 2" onerror="this.style.display='none'">
         </div>
       </div>
 
@@ -108,12 +118,12 @@
 
         <div class="hero-price-block" id="preorder-block" style="margin-top: 20px;">
           <span class="price-label">Ціна передзамовлення:</span>
-          <div style="font-size: 16px; text-decoration: line-through; color: #999;">400 грн</div>
-          <span class="current-price" data-product="zhulya2_preorder" style="color: var(--color-ocean);">350 грн</span>
+          <div style="font-size: 18px; text-decoration: line-through; color: #999;">500 грн</div>
+          <span class="current-price" style="color: var(--color-ocean);">420 грн</span>
         </div>
 
         <div class="hero-cta-desktop">
-          <button class="btn-primary" onclick="addToCart('Передзамовлення: Жуля-Рижуля 2', 350)" style="background-color: var(--color-ocean);">
+          <button class="btn-primary btn-preorder" onclick="addToCart('Передзамовлення: Жуля-Рижуля 2', 420)">
             Оформити передзамовлення
           </button>
           <p style="font-size: 12px; margin-top: 10px; color: #777;">*Оплачуючи зараз, ви гарантовано отримуєте книгу першими за зниженою ціною.</p>
@@ -140,8 +150,8 @@
           <li><strong>🏴‍☠️ Зустріч з піратами:</strong> Чи вдасться Жулі перехитрити підступних морських котів-розбійників?</li>
           <li><strong>⏳ Печера Часу:</strong> Остання загадка, яка змінить усе. Чи знайде Жуля шлях додому?</li>
         </ul>
-        <blockquote style="margin-top: 20px; border-left: 4px solid var(--color-ocean); padding-left: 15px; color: #555;">
-          «Ця історія вчить сміливості, дружбі та любові до природи. Ми вкладаємо всю душу в ілюстрації!» — Олександр Бірюк.
+        <blockquote style="margin-top: 20px; border-left: 4px solid var(--color-ocean); padding-left: 15px; color: #555; background: #f9f9f9; padding: 15px;">
+          «Ця історія вчить сміливості, дружбі та любові до природи. Ми вкладаємо всю душу в нові ілюстрації!» — Олександр Бірюк.
         </blockquote>
       </div>
     </div>
@@ -151,28 +161,39 @@
     <div class="container footer-content">
       <div class="footer-col">
         <h4>Контакти</h4>
-        <p><a href="mailto:store@zhulya.ua">store@zhulya.ua</a></p>
-        <p><a href="tel:+380988458007">+38 098 845-80-07</a></p>
+        <p>movanataliya1991@gmail.com</p>
+        <p>+38 098 845-80-07</p>
         <p>Конотоп, Україна</p>
+      </div>
+      <div class="footer-col">
+        <h4>Інформація</h4>
+        <ul style="list-style: none;">
+            <li><a href="politika.html" style="color: #bbb;">Публічна оферта</a></li>
+            <li><a href="refund_policy.html" style="color: #bbb;">Доставка та оплата</a></li>
+            <li><a href="contacts.html" style="color: #bbb;">Контакти ФОП</a></li>
+        </ul>
       </div>
       <div class="footer-col">
         <h4>Ми в соцмережах</h4>
         <div class="social-links">
           <a href="#">Facebook</a>
           <a href="#">Instagram</a>
-          <a href="#">YouTube</a>
+          <a href="https://www.youtube.com/@z_kazkou_do_peremogy">YouTube</a>
         </div>
       </div>
     </div>
     <div class="container" style="text-align: center;">
-      <a href="index.html" style="color: var(--color-text-light); display: inline-block; margin-top: 20px; border-bottom: 1px dashed;">← Повернутися на головну</a>
+      <a href="index.html" style="color: var(--color-text-light); display: inline-block; margin-top: 20px;">← Повернутися на головну</a>
+      <div style="margin-top: 20px; font-size: 14px; color: #666;">
+        © 2024 Олександр Бірюк. ФОП Бірюк Наталія Миколаївна.
+      </div>
     </div>
   </footer>
 
   <div class="mobile-sticky-buy">
     <div class="sticky-btn-wrapper">
-      <button class="btn-primary" onclick="addToCart('Передзамовлення: Жуля-Рижуля 2', 350)" style="background-color: var(--color-ocean);">
-        Передзамовити за 350 грн
+      <button class="btn-primary btn-preorder" onclick="addToCart('Передзамовлення: Жуля-Рижуля 2', 420)">
+        Передзамовити за 420 грн
       </button>
     </div>
   </div>
@@ -183,27 +204,40 @@
   </div>
 
   <div id="cart-modal" style="display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);">
-    <div style="background: white; margin: 20px auto; padding: 25px; width: 95%; max-width: 450px; border-radius: 20px; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2); max-height: 90vh; overflow-y: auto;">
-      <span onclick="toggleCart()" style="position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; color: #999; line-height: 1;">&times;</span>
-      <h3 style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; text-align: center;">Ваше замовлення</h3>
+    <div style="background: white; margin: 10px auto; padding: 25px; width: 90%; max-width: 450px; border-radius: 20px; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2); max-height: 90vh; overflow-y: auto;">
+      <span onclick="toggleCart()" style="position: absolute; right: 20px; top: 15px; font-size: 24px; cursor: pointer; color: #999;">&times;</span>
+      <h3 style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px;">Ваше замовлення</h3>
       
       <div id="cart-items-list" style="margin-bottom: 20px;"></div>
       
-      <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 18px; margin-bottom: 20px; padding-top: 10px; border-top: 1px solid #eee;">
+      <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 18px; margin-bottom: 20px;">
         <span>Разом до оплати:</span>
         <span><span id="cart-total-sum">0</span> грн</span>
       </div>
 
       <form id="order-form">
-        <input type="text" id="client-name" placeholder="Прізвище та Ім'я" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px;">
-        <input type="tel" id="client-phone" placeholder="Номер телефону" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px;">
-        <input type="text" id="client-np" placeholder="Місто та № відділення Нової Пошти" required style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px;">
-        <button type="submit" class="btn-primary" style="width: 100%; border: none; padding: 15px; font-size: 18px; background-color: var(--color-ocean);">Оформити передзамовлення</button>
+        <input type="text" id="client-name" placeholder="Прізвище та Ім'я" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px;">
+        <input type="tel" id="client-phone" placeholder="Номер телефону" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px;">
+        <input type="text" id="client-np" placeholder="Місто та № відділення Нової Пошти" required style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px;">
+        <button type="submit" class="btn-primary btn-preorder" style="width: 100%; border: none; padding: 15px;">Оформити передзамовлення</button>
       </form>
     </div>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
+  <script id="widget-wfp-script" src="https://secure.wayforpay.com/server/pay-widget.js"></script>
+
+  <script src="js/data.js?v=3"></script>
+  <script src="js/prices.js?v=3"></script>
+  <script src="js/cart.js?v=3"></script> 
+  
+  <script src="js/slider.js?v=3"></script>
+  <script src="js/carousel.js?v=3"></script>
+  <script src="js/burger.js?v=3"></script>
+  <script src="js/sticky-buy.js?v=3"></script>
+
   <script>
+    // Функція зміни картинок (безпечна для відсутніх файлів)
     function changeImage(src) {
       document.getElementById('mainImage').src = src;
       document.querySelectorAll('.thumbnails-row img').forEach(img => {
@@ -212,18 +246,33 @@
       });
     }
 
+    // Закриття меню
     function closeMenu() {
-      document.getElementById('mobileMenu').classList.remove('active');
-      document.getElementById('burgerBtn').classList.remove('active');
+      const menu = document.getElementById('mobileMenu');
+      const btn = document.getElementById('burgerBtn');
+      if (menu) menu.classList.remove('active');
+      if (btn) btn.classList.remove('active');
     }
-  </script>
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
-  <script id="widget-wfp-script" src="https://secure.wayforpay.com/server/pay-widget.js"></script>
-  
-  <script src="js/data.js"></script>
-  <script src="js/prices.js"></script>
-  <script src="js/cart.js"></script>
 
+    // ЛОГІКА ДЛЯ КОРЕКТНОГО ВІДКРИТТЯ КОШИКА
+    // Перевизначаємо toggleCart, щоб ховати плашку dev-notice
+    window.toggleCart = function() {
+        const modal = document.getElementById('cart-modal');
+        const devNotice = document.querySelector('.dev-notice');
+        
+        if (!modal) return;
+
+        const isHidden = window.getComputedStyle(modal).display === 'none';
+        
+        if (isHidden) {
+            modal.style.display = 'block';
+            if (devNotice) devNotice.style.display = 'none'; // Ховаємо плашку
+            if (typeof window.updateCartUI === 'function') window.updateCartUI();
+        } else {
+            modal.style.display = 'none';
+            if (devNotice) devNotice.style.display = 'block'; // Повертаємо плашку
+        }
+    };
+  </script>
 </body>
 </html>
