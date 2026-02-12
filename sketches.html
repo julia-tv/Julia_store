@@ -3,24 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://secure.wayforpay.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://secure.wayforpay.com; img-src 'self' data: https:; connect-src 'self' https://api.telegram.org https://secure.wayforpay.com https://cdnjs.cloudflare.com;">
+  
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://secure.wayforpay.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://secure.wayforpay.com https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.telegram.org https://secure.wayforpay.com https://cdnjs.cloudflare.com https://julia-store.vercel.app;">
+  
   <title>Асоціативні ескізи жіночності — Олександр Бірюк</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="hero-style.css">
 </head>
 <body>
 
   <div class="dev-notice">
-  <div class="dev-notice-inner">
-    <strong>Сайт у процесі розробки та оновлення</strong> — деякі функції (кошик, оплата онлайн) можуть працювати нестабільно. 
-    <br class="mobile-br">
-    <br>Замовляйте зручно <strong>за телефоном:</strong> 
-    <a href="tel:+380988458007" class="phone-link">+38 098 845-80-07</a>
+    <div class="dev-notice-inner">
+      <strong>Сайт у процесі розробки та оновлення</strong> — деякі функції (кошик, оплата онлайн) можуть працювати нестабільно. 
+      <br class="mobile-br">
+      <br>Замовляйте зручно <strong>за телефоном:</strong> 
+      <a href="tel:+380988458007" class="phone-link">+38 098 845-80-07</a>
+    </div>
   </div>
-</div>
 
   <header class="site-header">
     <div class="container header-inner">
-      <div class="logo">Жуля-Рижуля</div>
+      <div class="logo"><a href="index.html" style="color: inherit;">Жуля-Рижуля</a></div>
       
       <nav class="nav-links">
         <a href="index.html">Головна</a>
@@ -34,7 +37,7 @@
         <div class="cart" onclick="toggleCart()" style="cursor:pointer;">🛒 <span id="cart-count-header">0</span></div>
       </div>
 
-      <button class="burger" id="burgerBtn" aria-label="Меню">
+      <button class="burger" id="burgerBtn" aria-label="Меню" onclick="document.getElementById('mobileMenu').classList.toggle('active'); this.classList.toggle('active');">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -60,6 +63,7 @@
           <img src="img/sketches-page1.jpg" onclick="changeImage(this.src)" alt="Page 1">
           <img src="img/sketches-page2.jpg" onclick="changeImage(this.src)" alt="Page 2">
           <img src="img/sketches-page3.jpg" onclick="changeImage(this.src)" alt="Page 3">
+          <img src="img/sketches-page4.jpg" onclick="changeImage(this.src)" alt="Page 4">
         </div>
       </div>
 
@@ -69,11 +73,11 @@
         
         <div class="hero-price-block">
           <span class="price-label">Ціна:</span>
-          <span class="current-price" data-product="sketches">450 грн</span>
+          <span class="current-price" data-product="sketches.price">450 грн</span>
         </div>
 
         <div class="hero-cta-desktop">
-          <button class="btn-primary" onclick="addToCart('Асоціативні ескізи жіночності', 450)">
+          <button class="btn-primary" onclick="addToCartByData(this, 'sketches')">
             Замовити зараз
           </button>
         </div>
@@ -113,22 +117,22 @@
         
         <div class="bundle-card">
           <h3>Набір "Повне занурення"</h3>
-          <p class="bundle-desc">Ескізи жіночності + набір ефірних олій</p>
+          <p class="bundle-desc">Ескізи жіночності + набір професійних олівців</p>
           <div class="price-row">
-            <span class="old-price">1350 грн</span>
-            <span class="bundle-price">1110 грн</span>
+            <span class="old-price">850 грн</span>
+            <span class="bundle-price">720 грн</span>
           </div>
-          <button class="btn-primary" onclick="addToCart('Набір: Ескізи + Олівці', 1110)">Купити набір</button>
+          <button class="btn-primary" onclick="addToCart('Набір: Ескізи + Олівці', 720)">Купити набір</button>
         </div>
 
         <div class="bundle-card">
           <h3>Тандем "Магія та Краса"</h3>
           <p class="bundle-desc">Розмальовка + книга "Ефіріум"</p>
           <div class="price-row">
-            <span class="old-price">830 грн</span>
-            <span class="bundle-price">790 грн</span>
+            <span class="old-price">770 грн</span>
+            <span class="bundle-price">690 грн</span>
           </div>
-          <button class="btn-primary" onclick="addToCart('Набір: Ескізи + Ефіріум', 790)">Купити набір</button>
+          <button class="btn-primary" onclick="addToCart('Набір: Ескізи + Ефіріум', 690)">Купити набір</button>
         </div>
 
       </div>
@@ -155,7 +159,7 @@
   <section class="section-cta">
     <div class="container">
       <h2>Почніть свій шлях до гармонії</h2>
-      <button class="btn-primary" onclick="addToCart('Асоціативні ескізи жіночності', 450)">Замовити ескізи</button>
+      <button class="btn-primary" onclick="addToCartByData(this, 'sketches')">Замовити ескізи</button>
     </div>
   </section>
 
@@ -163,43 +167,55 @@
     <div class="container footer-content">
       <div class="footer-col">
         <h4>Контакти</h4>
-        <p>store@zhulya.ua</p>
+        <p>movanataliya1991@gmail.com</p>
         <p>+38 098 845-80-07</p>
         <p>Конотоп, Україна</p>
+      </div>
+      <div class="footer-col">
+        <h4>Інформація</h4>
+        <ul style="list-style: none;">
+            <li><a href="politika.html" style="color: #bbb;">Публічна оферта</a></li>
+            <li><a href="refund_policy.html" style="color: #bbb;">Доставка та оплата</a></li>
+            <li><a href="contacts.html" style="color: #bbb;">Контакти ФОП</a></li>
+        </ul>
       </div>
       <div class="footer-col">
         <h4>Ми в соцмережах</h4>
         <div class="social-links">
           <a href="#">Facebook</a>
           <a href="#">Instagram</a>
-          <a href="#">YouTube</a>
+          <a href="https://www.youtube.com/@z_kazkou_do_peremogy">YouTube</a>
         </div>
       </div>
     </div>
-           <div class="container" style="text-align: center;">
-      <a href="index.html" style="color: var(--color-ocean); display: inline-block; margin-top: 20px;">← Повернутися на головну</a>
+    <div class="container" style="text-align: center;">
+      <a href="index.html" style="color: var(--color-accent); display: inline-block; margin-top: 20px;">← Повернутися на головну</a>
+      <div style="margin-top: 20px; font-size: 14px; color: #666;">
+        © 2024 Олександр Бірюк. ФОП Бірюк Наталія Миколаївна.
+      </div>
     </div>
   </footer>
 
   <div class="mobile-sticky-buy">
     <div class="sticky-btn-wrapper">
-      <button class="btn-primary" onclick="addToCart('Асоціативні ескізи жіночності', 450)">
-        Купити за 450 грн
+      <button class="btn-primary" onclick="addToCartByData(this, 'sketches')">
+        Купити за&nbsp;<span data-product="sketches.price">450 грн</span>
       </button>
     </div>
   </div>
 
-  <div id="mobile-cart-float" onclick="toggleCart()" style="display: none; position: fixed; bottom: 90px; right: 20px; background: var(--color-accent); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1001; cursor: pointer;">
+  <div id="mobile-cart-float" onclick="toggleCart()" style="display: none; position: fixed; bottom: 90px; right: 20px; background: var(--color-accent); color: white; width: 60px; height: 60px; border-radius: 50%; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1001; cursor: pointer;">
     🛒
     <span id="cart-count-float" style="position: absolute; top: -5px; right: -5px; background: #ff4d4d; color: white; font-size: 12px; font-weight: bold; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid white;">0</span>
   </div>
 
   <div id="cart-modal" style="display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);">
-    <div style="background: white; margin: 20px auto; padding: 25px; width: 90%; max-width: 450px; border-radius: 20px; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2); max-height: 90vh; overflow-y: auto;">
+    <div style="background: white; margin: 10px auto; padding: 25px; width: 90%; max-width: 450px; border-radius: 20px; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
       <span onclick="toggleCart()" style="position: absolute; right: 20px; top: 15px; font-size: 24px; cursor: pointer; color: #999;">&times;</span>
       <h3 style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px;">Ваше замовлення</h3>
       
-      <div id="cart-items-list" style="margin-bottom: 20px;"></div>
+      <div id="cart-items-list" style="max-height: 200px; overflow-y: auto; margin-bottom: 20px;">
+      </div>
       
       <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 18px; margin-bottom: 20px;">
         <span>Разом до оплати:</span>
@@ -215,6 +231,18 @@
     </div>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
+  <script id="widget-wfp-script" src="https://secure.wayforpay.com/server/pay-widget.js"></script>
+
+  <script src="js/data.js?v=3"></script>
+  <script src="js/prices.js?v=3"></script>
+  <script src="js/cart.js?v=3"></script> 
+  
+  <script src="js/slider.js?v=3"></script>
+  <script src="js/carousel.js?v=3"></script>
+  <script src="js/burger.js?v=3"></script>
+  <script src="js/sticky-buy.js?v=3"></script>
+
   <script>
     function changeImage(src) {
       document.getElementById('mainImage').src = src;
@@ -223,19 +251,31 @@
         if(img.src.includes(src)) img.classList.add('active');
       });
     }
+
     function closeMenu() {
-      document.getElementById('mobileMenu').classList.remove('active');
-      document.getElementById('burgerBtn').classList.remove('active');
+      const menu = document.getElementById('mobileMenu');
+      const btn = document.getElementById('burgerBtn');
+      if (menu) menu.classList.remove('active');
+      if (btn) btn.classList.remove('active');
     }
+
+    // ЛОГІКА ПРИХОВУВАННЯ ПЛАШКИ
+    window.toggleCart = function() {
+        const modal = document.getElementById('cart-modal');
+        const devNotice = document.querySelector('.dev-notice');
+        if (!modal) return;
+        
+        const isHidden = window.getComputedStyle(modal).display === 'none';
+        
+        if (isHidden) {
+            modal.style.display = 'block';
+            if (devNotice) devNotice.style.display = 'none'; // Ховаємо плашку
+            if (typeof window.updateCartUI === 'function') window.updateCartUI();
+        } else {
+            modal.style.display = 'none';
+            if (devNotice) devNotice.style.display = 'block'; // Повертаємо плашку
+        }
+    };
   </script>
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.19.0/js/md5.min.js"></script>
-  <script id="widget-wfp-script" src="https://secure.wayforpay.com/server/pay-widget.js"></script>
-  <script src="js/data.js"></script>
-  <script src="js/prices.js"></script>
-  <script src="js/slider.js"></script>
-  <script src="js/carousel.js"></script>
-  <script src="js/burger.js"></script>
-  <script src="js/sticky-buy.js"></script>
-  <script src="js/cart.js"></script></body>
+</body>
 </html>
