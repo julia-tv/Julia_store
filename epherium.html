@@ -34,8 +34,8 @@
 
       <div class="header-contact">
         <a href="tel:+380988458007">+38 098 845-80-07</a>
-        <div class="cart" onclick="toggleCart()" style="cursor:pointer; position: relative; padding: 5px;">
-          🛒 <span id="cart-count-header">0</span>
+        <div class="cart" onclick="toggleCart()" style="cursor:pointer; position: relative; font-size: 24px;">
+          🛒 <span id="cart-count-header" style="background: var(--color-accent); color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px; position: absolute; top: -5px; right: -10px;">0</span>
         </div>
       </div>
 
@@ -46,7 +46,7 @@
   </header>
 
   <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html">Головна</a>
+    <a href="index.html" onclick="closeMenu()">Головна</a>
     <a href="#description" onclick="closeMenu()">Про книгу</a>
     <a href="#bundles" onclick="closeMenu()">Набори</a>
     <a href="#footer" onclick="closeMenu()">Контакти</a>
@@ -113,7 +113,7 @@
       <h2 class="section-title center-text">Вигідні набори з Ефіріумом</h2>
       <div class="bundles-grid">
         <div class="bundle-card">
-          <img src="img/bundle-12.jpg" alt="Набір 12" style="width:100%; border-radius:10px; margin-bottom:15px;" onerror="this.src='https://via.placeholder.com/300x400?text=Зображення+відсутнє'">
+          <img src="img/bundle-12.jpg" alt="Набір 12" style="width:100%; border-radius:10px; margin-bottom:15px; display: block;">
           <h3>Ефіріум + Мініатюри 5мл ×12</h3>
           <div class="price-row">
             <span class="old-price"><span data-product="bundles.epherium12.oldPrice">1200</span> грн</span>
@@ -123,7 +123,7 @@
         </div>
         
         <div class="bundle-card">
-          <img src="img/bundle-3.jpg" alt="Набір 3" style="width:100%; border-radius:10px; margin-bottom:15px;" onerror="this.src='https://via.placeholder.com/300x400?text=Зображення+відсутнє'">
+          <img src="img/bundle-3.jpg" alt="Набір 3" style="width:100%; border-radius:10px; margin-bottom:15px; display: block;">
           <h3>Ефіріум + Мініатюри 5мл ×3</h3>
           <div class="price-row">
             <span class="old-price"><span data-product="bundles.epherium3.oldPrice">780</span> грн</span>
@@ -191,14 +191,12 @@
     <span id="cart-count-float" style="position: absolute; top: -5px; right: -5px; background: #ff4d4d; color: white; font-size: 12px; font-weight: bold; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid white;">0</span>
   </div>
 
-  <div id="cart-modal" style="display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);">
-    <div style="background: white; margin: 10px auto; padding: 25px; width: 90%; max-width: 450px; border-radius: 20px; position: relative; max-height: 90vh; overflow-y: auto;">
-      <span onclick="toggleCart()" style="position: absolute; right: 20px; top: 15px; font-size: 24px; cursor: pointer;">&times;</span>
+  <div id="cart-modal" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);">
+    <div style="background: white; margin: 50px auto; padding: 25px; width: 90%; max-width: 450px; border-radius: 20px; position: relative; max-height: 80vh; overflow-y: auto;">
+      <span onclick="toggleCart()" style="position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; color: #333;">&times;</span>
       <h3>Ваше замовлення</h3>
-      <div id="cart-items-list" style="max-height: 200px; overflow-y: auto; margin-bottom: 20px;">
-        <p style="color: #777; text-align: center;">Кошик порожній</p>
-      </div>
-      <div style="display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 20px; border-top: 1px solid #eee; padding-top: 10px;">
+      <div id="cart-items-list" style="margin: 20px 0; border-top: 1px solid #eee; padding-top: 10px;"></div>
+      <div style="display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 20px; font-size: 18px;">
         <span>Разом:</span>
         <span><span id="cart-total-sum">0</span> грн</span>
       </div>
@@ -206,7 +204,7 @@
         <input type="text" id="client-name" placeholder="Прізвище та Ім'я" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px;">
         <input type="tel" id="client-phone" placeholder="Номер телефону" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px;">
         <input type="text" id="client-np" placeholder="Місто та № пошти" required style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px;">
-        <button type="submit" class="btn-primary" style="width: 100%; border: none;">Оформити замовлення</button>
+        <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer;">Оформити замовлення</button>
       </form>
     </div>
   </div>
@@ -219,7 +217,6 @@
   <script src="js/burger.js?v=3"></script>
 
   <script>
-    // Ініціалізація UI після завантаження
     document.addEventListener('DOMContentLoaded', () => {
       if (typeof window.updateCartUI === 'function') {
         window.updateCartUI();
@@ -227,8 +224,7 @@
     });
 
     function changeImage(src) {
-      const mainImg = document.getElementById('mainImage');
-      if(mainImg) mainImg.src = src;
+      document.getElementById('mainImage').src = src;
       document.querySelectorAll('.thumbnails-row img').forEach(img => {
         img.classList.remove('active');
         if(img.src === src) img.classList.add('active');
@@ -237,38 +233,26 @@
 
     function closeMenu() {
       const menu = document.getElementById('mobileMenu');
-      const burger = document.getElementById('burgerBtn');
-      if(menu) menu.classList.remove('active');
-      if(burger) burger.classList.remove('active');
+      const btn = document.getElementById('burgerBtn');
+      if (menu) menu.classList.remove('active');
+      if (btn) btn.classList.remove('active');
     }
 
-    // Покращена функція toggleCart
     window.toggleCart = function() {
         const modal = document.getElementById('cart-modal');
-        const devNotice = document.querySelector('.dev-notice');
         if (!modal) return;
-
-        const isHidden = window.getComputedStyle(modal).display === 'none';
+        
+        const isHidden = modal.style.display === 'none' || modal.style.display === '';
         
         if (isHidden) {
             modal.style.display = 'block';
-            if (devNotice) devNotice.style.opacity = '0'; // Ховаємо плавно
-            if (typeof window.updateCartUI === 'function') {
-                window.updateCartUI();
-            }
+            document.body.style.overflow = 'hidden'; // Забороняємо прокрутку фону
+            if (typeof window.updateCartUI === 'function') window.updateCartUI();
         } else {
             modal.style.display = 'none';
-            if (devNotice) devNotice.style.opacity = '1';
+            document.body.style.overflow = ''; // Повертаємо прокрутку
         }
     };
-
-    // Закриття модалки при кліку поза нею
-    window.onclick = function(event) {
-        const modal = document.getElementById('cart-modal');
-        if (event.target == modal) {
-            toggleCart();
-        }
-    }
   </script>
 </body>
 </html>
