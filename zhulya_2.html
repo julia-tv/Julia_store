@@ -9,9 +9,10 @@
   <title>Жуля-Рижуля: Подорож у серце океану — Передзамовлення</title>
   
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="hero-style.css">
   
   <style>
-    /* Додаткові стилі для океанської тематики */
+    /* Стилі суто для сторінки передзамовлення */
     :root { --color-ocean: #0077be; }
     
     .badge-preorder {
@@ -38,7 +39,7 @@
       border: 1px solid #b3e5fc;
     }
     
-    /* Стиль для кнопки передзамовлення */
+    /* Кнопка передзамовлення */
     .btn-preorder {
         background: linear-gradient(135deg, #0077be, #005c99) !important;
         box-shadow: 0 8px 20px rgba(0, 119, 190, 0.35) !important;
@@ -71,14 +72,11 @@
       </nav>
 
       <div class="header-contact">
-        <a href="tel:+380988458007" class="phone-icon-link">📞</a>
-        <span class="desktop-phone">+38 098 845-80-07</span>
-        <div class="cart" onclick="toggleCart()" style="cursor:pointer; margin-left: 15px;">
-          🛒 <span id="cart-count-header">0</span>
-        </div>
+        <a href="tel:+380988458007">+38 098 845-80-07</a>
+        <div class="cart" onclick="toggleCart()" style="cursor:pointer;">🛒 <span id="cart-count-header">0</span></div>
       </div>
 
-      <button class="burger" id="burgerBtn" aria-label="Меню" onclick="document.getElementById('mobileMenu').classList.toggle('active'); this.classList.toggle('active');">
+      <button class="burger" id="burgerBtn" onclick="document.getElementById('mobileMenu').classList.toggle('active'); this.classList.toggle('active');">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -157,42 +155,40 @@
     </div>
   </section>
 
-  <footer id="footer">
-    <div class="container footer-content">
+  <footer id="footer" style="background: #1a1a1a; color: #fff; padding: 60px 0 30px;">
+    <div class="container footer-content" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 50px;">
       <div class="footer-col">
-        <h4>Контакти</h4>
+        <h4 style="color: var(--color-accent); margin-bottom: 20px;">Контакти</h4>
         <p>movanataliya1991@gmail.com</p>
         <p>+38 098 845-80-07</p>
         <p>Конотоп, Україна</p>
       </div>
       <div class="footer-col">
-        <h4>Інформація</h4>
-        <ul style="list-style: none;">
+        <h4 style="color: var(--color-accent); margin-bottom: 20px;">Інформація</h4>
+        <ul style="line-height: 2.2; list-style: none;">
             <li><a href="politika.html" style="color: #bbb;">Публічна оферта</a></li>
             <li><a href="refund_policy.html" style="color: #bbb;">Доставка та оплата</a></li>
             <li><a href="contacts.html" style="color: #bbb;">Контакти ФОП</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Ми в соцмережах</h4>
-        <div class="social-links">
-          <a href="#">Facebook</a>
-          <a href="#">Instagram</a>
-          <a href="https://www.youtube.com/@z_kazkou_do_peremogy">YouTube</a>
+        <h4 style="color: var(--color-accent); margin-bottom: 20px;">Ми в соцмережах</h4>
+        <div class="social-links" style="display: flex; gap: 20px;">
+          <a href="#" style="color: #fff;">Facebook</a>
+          <a href="#" style="color: #fff;">Instagram</a>
+          <a href="https://www.youtube.com/@z_kazkou_do_peremogy" style="color: #fff;">YouTube</a>
         </div>
       </div>
     </div>
-    <div class="container" style="text-align: center;">
-      <a href="index.html" style="color: var(--color-text-light); display: inline-block; margin-top: 20px;">← Повернутися на головну</a>
-      <div style="margin-top: 20px; font-size: 14px; color: #666;">
-        © 2024 Олександр Бірюк. ФОП Бірюк Наталія Миколаївна.
-      </div>
+    <div class="container" style="text-align: center; border-top: 1px solid #333; padding-top: 30px; font-size: 14px; color: #666;">
+      <a href="index.html" style="color: var(--color-text-light); display: inline-block; margin-top: 20px; border-bottom: 1px dashed;">← Повернутися на головну</a>
+      <p style="margin-top: 10px;">© 2024 Олександр Бірюк. ФОП Бірюк Наталія Миколаївна.</p>
     </div>
   </footer>
 
   <div class="mobile-sticky-buy">
     <div class="sticky-btn-wrapper">
-      <button class="btn-primary btn-preorder" onclick="addToCart('Передзамовлення: Жуля-Рижуля 2', 420)">
+      <button class="btn-primary btn-preorder" onclick="addToCart('Передзамовлення: Жуля-Рижуля 2', 420)" style="background-color: var(--color-ocean);">
         Передзамовити за 420 грн
       </button>
     </div>
@@ -210,7 +206,7 @@
       
       <div id="cart-items-list" style="margin-bottom: 20px;"></div>
       
-      <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 18px; margin-bottom: 20px;">
+      <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 18px; margin-bottom: 20px; border-top: 1px solid #eee; padding-top: 10px;">
         <span>Разом до оплати:</span>
         <span><span id="cart-total-sum">0</span> грн</span>
       </div>
@@ -219,7 +215,7 @@
         <input type="text" id="client-name" placeholder="Прізвище та Ім'я" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px;">
         <input type="tel" id="client-phone" placeholder="Номер телефону" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px;">
         <input type="text" id="client-np" placeholder="Місто та № відділення Нової Пошти" required style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px;">
-        <button type="submit" class="btn-primary btn-preorder" style="width: 100%; border: none; padding: 15px;">Оформити передзамовлення</button>
+        <button type="submit" class="btn-primary btn-preorder" style="width: 100%; border: none; padding: 15px; background-color: var(--color-ocean);">Оформити передзамовлення</button>
       </form>
     </div>
   </div>
@@ -230,14 +226,13 @@
   <script src="js/data.js?v=3"></script>
   <script src="js/prices.js?v=3"></script>
   <script src="js/cart.js?v=3"></script> 
-  
   <script src="js/slider.js?v=3"></script>
   <script src="js/carousel.js?v=3"></script>
   <script src="js/burger.js?v=3"></script>
   <script src="js/sticky-buy.js?v=3"></script>
 
   <script>
-    // Функція зміни картинок (безпечна для відсутніх файлів)
+    // Функція зміни картинок
     function changeImage(src) {
       document.getElementById('mainImage').src = src;
       document.querySelectorAll('.thumbnails-row img').forEach(img => {
@@ -254,8 +249,7 @@
       if (btn) btn.classList.remove('active');
     }
 
-    // ЛОГІКА ДЛЯ КОРЕКТНОГО ВІДКРИТТЯ КОШИКА
-    // Перевизначаємо toggleCart, щоб ховати плашку dev-notice
+    // ЛОГІКА: Відкриття кошика + приховування плашки
     window.toggleCart = function() {
         const modal = document.getElementById('cart-modal');
         const devNotice = document.querySelector('.dev-notice');
@@ -265,10 +259,12 @@
         const isHidden = window.getComputedStyle(modal).display === 'none';
         
         if (isHidden) {
+            // ВІДКРИВАЄМО
             modal.style.display = 'block';
             if (devNotice) devNotice.style.display = 'none'; // Ховаємо плашку
             if (typeof window.updateCartUI === 'function') window.updateCartUI();
         } else {
+            // ЗАКРИВАЄМО
             modal.style.display = 'none';
             if (devNotice) devNotice.style.display = 'block'; // Повертаємо плашку
         }
