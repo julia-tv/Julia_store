@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Копіюємо кошик, бо після успіху ми його очистимо
             const cartCopy = [...cart];
 
-            // URL для підпису WayForPay (як було)
+            // URL для підпису WayForPay
             const signUrl = 'https://julia-store.vercel.app/api/sign';
 
             try {
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (!signResponse.ok) {
-                    throw new Error("Сервер підпису не відповів");
+                    throw new Error(`Сервер підпису не відповів: ${signResponse.status}`);
                 }
 
                 const signData = await signResponse.json();
@@ -140,12 +140,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     productCount: cart.map(i => i.qty),
                     clientFirstName: name,
                     clientPhone: phone
-                    // Якщо хочеш передати доставку в WayForPay (опціонально)
-                    // clientAddress: delivery,
+                    // clientAddress: delivery,     // якщо хочеш передати
                     // deliveryType: 'nova'
                 },
                 // Success callback
                 async function(res) {
+                    console.log("=== WayForPay SUCCESS CALLBACK ВИКЛИКАНО ===", res);
+
                     alert("Оплата успішна! Дякуємо за замовлення.");
 
                     // Очищаємо кошик
@@ -155,6 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Надсилаємо сповіщення в Telegram через Vercel
                     try {
+                        console.log("=== Спроба надіслати нотифікацію в Telegram ===");
                         const notifyResponse = await fetch('https://julia-store.vercel.app/api/notify-telegram', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
@@ -163,17 +165,19 @@ document.addEventListener('DOMContentLoaded', () => {
                                 phone: phone,
                                 delivery: delivery,
                                 total: totalAmount,
-                                products: cartCopy  // використовуємо копію
+                                products: cartCopy
                             })
                         });
 
+                        console.log("Notify response status:", notifyResponse.status);
+
                         if (!notifyResponse.ok) {
-                            console.warn("Сповіщення в Telegram не надіслано, але оплата пройшла");
+                            console.warn("Сповіщення в Telegram не надіслано, статус:", notifyResponse.status);
                         } else {
-                            console.log("Сповіщення в Telegram надіслано");
+                            console.log("Сповіщення в Telegram надіслано успішно");
                         }
                     } catch (notifyErr) {
-                        console.error("Помилка надсилання сповіщення:", notifyErr);
+                        console.error("Помилка fetch notify-telegram:", notifyErr);
                     }
                 },
                 // Error callback
