@@ -41,11 +41,11 @@
     
     /* Кнопка передзамовлення */
     .btn-preorder {
-        background: linear-gradient(135deg, #0077be, #005c99) !important;
-        box-shadow: 0 8px 20px rgba(0, 119, 190, 0.35) !important;
+      background: linear-gradient(135deg, #0077be, #005c99) !important;
+      box-shadow: 0 8px 20px rgba(0, 119, 190, 0.35) !important;
     }
     .btn-preorder:hover {
-        background: linear-gradient(135deg, #0088cc, #0066aa) !important;
+      background: linear-gradient(135deg, #0088cc, #0066aa) !important;
     }
   </style>
 </head>
@@ -76,14 +76,14 @@
         <div class="cart" onclick="toggleCart()" style="cursor:pointer;">🛒 <span id="cart-count-header">0</span></div>
       </div>
 
-      <button class="burger" id="burgerBtn" onclick="document.getElementById('mobileMenu').classList.toggle('active'); this.classList.toggle('active');">
+      <button class="burger" id="burgerBtn">
         <span></span><span></span><span></span>
       </button>
     </div>
   </header>
 
   <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html">Головна</a>
+    <a href="index.html" onclick="closeMenu()">Головна</a>
     <a href="#about" onclick="closeMenu()">Про книгу</a>
     <a href="#preorder-block" onclick="closeMenu()">Передзамовлення</a>
     <a href="#footer" onclick="closeMenu()">Контакти</a>
@@ -92,15 +92,14 @@
 
   <section class="hero" id="hero">
     <div class="container hero-grid">
-      
       <div class="hero-media">
         <div class="main-image-wrapper">
-          <img id="mainImage" src="img/zhulya2-preview.jpg" alt="Обкладинка: Подорож у серце океану" width="600" height="800">
+          <img id="mainImage" src="img/zhulya2-preview.jpg" alt="Обкладинка: Подорож у серце океану" width="600" height="800" loading="lazy">
         </div>
         <div class="thumbnails-row">
-          <img src="img/zhulya2-preview.jpg" onclick="changeImage(this.src)" class="active" alt="Cover" style="border: 2px solid var(--color-ocean);">
-          <img src="img/zhulya2-page1.jpg" onclick="changeImage(this.src)" alt="Ескіз 1" onerror="this.style.display='none'">
-          <img src="img/zhulya2-page2.jpg" onclick="changeImage(this.src)" alt="Ескіз 2" onerror="this.style.display='none'">
+          <img src="img/zhulya2-preview.jpg" onclick="changeImage(this.src)" class="active" alt="Обкладинка" loading="lazy">
+          <img src="img/zhulya2-page1.jpg" onclick="changeImage(this.src)" alt="Ескіз 1" loading="lazy" onerror="this.style.display='none'">
+          <img src="img/zhulya2-page2.jpg" onclick="changeImage(this.src)" alt="Ескіз 2" loading="lazy" onerror="this.style.display='none'">
         </div>
       </div>
 
@@ -121,7 +120,7 @@
         </div>
 
         <div class="hero-cta-desktop">
-          <button class="btn-primary btn-preorder" onclick="addToCart('Передзамовлення: Жуля-Рижуля 2', 420)">
+          <button class="btn-primary btn-preorder" onclick="addToCartByData(this, 'zhulya2')">
             Оформити передзамовлення
           </button>
           <p style="font-size: 12px; margin-top: 10px; color: #777;">*Оплачуючи зараз, ви гарантовано отримуєте книгу першими за зниженою ціною.</p>
@@ -133,7 +132,6 @@
           <p><strong>Статус:</strong> У розробці ✍️</p>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -166,9 +164,9 @@
       <div class="footer-col">
         <h4 style="color: var(--color-accent); margin-bottom: 20px;">Інформація</h4>
         <ul style="line-height: 2.2; list-style: none;">
-            <li><a href="politika.html" style="color: #bbb;">Публічна оферта</a></li>
-            <li><a href="refund_policy.html" style="color: #bbb;">Доставка та оплата</a></li>
-            <li><a href="contacts.html" style="color: #bbb;">Контакти ФОП</a></li>
+          <li><a href="politika.html" style="color: #bbb;">Публічна оферта</a></li>
+          <li><a href="refund_policy.html" style="color: #bbb;">Доставка та оплата</a></li>
+          <li><a href="contacts.html" style="color: #bbb;">Контакти ФОП</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -188,34 +186,32 @@
 
   <div class="mobile-sticky-buy">
     <div class="sticky-btn-wrapper">
-      <button class="btn-primary btn-preorder" onclick="addToCart('Передзамовлення: Жуля-Рижуля 2', 420)" style="background-color: var(--color-ocean);">
+      <button class="btn-primary btn-preorder" onclick="addToCartByData(this, 'zhulya2')" style="background: linear-gradient(135deg, #0077be, #005c99) !important;">
         Передзамовити за 420 грн
       </button>
     </div>
   </div>
 
-  <div id="mobile-cart-float" onclick="toggleCart()" style="display: none; position: fixed; bottom: 90px; right: 20px; background: var(--color-ocean); color: white; width: 60px; height: 60px; border-radius: 50%; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1001; cursor: pointer;">
+  <div id="mobile-cart-float" onclick="toggleCart()" style="display: flex; position: fixed; bottom: 90px; right: 20px; background: var(--color-ocean); color: white; width: 60px; height: 60px; border-radius: 50%; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1001; cursor: pointer;">
     🛒
     <span id="cart-count-float" style="position: absolute; top: -5px; right: -5px; background: #ff4d4d; color: white; font-size: 12px; font-weight: bold; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid white;">0</span>
   </div>
 
   <div id="cart-modal" style="display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);">
-    <div style="background: white; margin: 10px auto; padding: 25px; width: 90%; max-width: 450px; border-radius: 20px; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2); max-height: 90vh; overflow-y: auto;">
-      <span onclick="toggleCart()" style="position: absolute; right: 20px; top: 15px; font-size: 24px; cursor: pointer; color: #999;">&times;</span>
-      <h3 style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px;">Ваше замовлення</h3>
-      
-      <div id="cart-items-list" style="margin-bottom: 20px;"></div>
-      
-      <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 18px; margin-bottom: 20px; border-top: 1px solid #eee; padding-top: 10px;">
-        <span>Разом до оплати:</span>
-        <span><span id="cart-total-sum">0</span> грн</span>
+    <div style="background: white; margin: 20px auto; padding: 25px; width: 90%; max-width: 450px; border-radius: 20px; position: relative;">
+      <span onclick="toggleCart()" style="position: absolute; right: 20px; top: 15px; font-size: 24px; cursor: pointer;">&times;</span>
+      <h3>Ваше замовлення</h3>
+      <div id="cart-items-list" style="margin: 20px 0;"></div>
+      <div style="display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 20px;">
+        <span>Разом:</span> <span><span id="cart-total-sum">0</span> грн</span>
       </div>
-
       <form id="order-form">
-        <input type="text" id="client-name" placeholder="Прізвище та Ім'я" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px;">
-        <input type="tel" id="client-phone" placeholder="Номер телефону" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px;">
-        <input type="text" id="client-np" placeholder="Місто та № відділення Нової Пошти" required style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px;">
-        <button type="submit" class="btn-primary btn-preorder" style="width: 100%; border: none; padding: 15px; background-color: var(--color-ocean);">Оформити передзамовлення</button>
+        <input type="text" id="client-name" placeholder="Ім'я Прізвище" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px;">
+        <input type="tel" id="client-phone" placeholder="Телефон" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px;">
+        <input type="text" id="client-np" placeholder="Місто та Нова Пошта" required style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px;">
+        <button type="submit" class="btn-primary btn-preorder" style="width: 100%; border: none; background: linear-gradient(135deg, #0077be, #005c99) !important;">
+          Оформити передзамовлення
+        </button>
       </form>
     </div>
   </div>
@@ -225,23 +221,20 @@
 
   <script src="js/data.js?v=3"></script>
   <script src="js/prices.js?v=3"></script>
-  <script src="js/cart.js?v=3"></script> 
+  <script src="js/cart.js?v=3"></script>
   <script src="js/slider.js?v=3"></script>
   <script src="js/carousel.js?v=3"></script>
   <script src="js/burger.js?v=3"></script>
-  <script src="js/sticky-buy.js?v=3"></script>
 
   <script>
-    // Функція зміни картинок
     function changeImage(src) {
       document.getElementById('mainImage').src = src;
       document.querySelectorAll('.thumbnails-row img').forEach(img => {
         img.classList.remove('active');
-        if(img.src.includes(src)) img.classList.add('active');
+        if (img.src === src) img.classList.add('active');
       });
     }
 
-    // Закриття меню
     function closeMenu() {
       const menu = document.getElementById('mobileMenu');
       const btn = document.getElementById('burgerBtn');
@@ -249,26 +242,13 @@
       if (btn) btn.classList.remove('active');
     }
 
-    // ЛОГІКА: Відкриття кошика + приховування плашки
-    window.toggleCart = function() {
-        const modal = document.getElementById('cart-modal');
-        const devNotice = document.querySelector('.dev-notice');
-        
-        if (!modal) return;
-
-        const isHidden = window.getComputedStyle(modal).display === 'none';
-        
-        if (isHidden) {
-            // ВІДКРИВАЄМО
-            modal.style.display = 'block';
-            if (devNotice) devNotice.style.display = 'none'; // Ховаємо плашку
-            if (typeof window.updateCartUI === 'function') window.updateCartUI();
-        } else {
-            // ЗАКРИВАЄМО
-            modal.style.display = 'none';
-            if (devNotice) devNotice.style.display = 'block'; // Повертаємо плашку
-        }
-    };
+    // Початкове оновлення кошика
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof window.updateCartUI === 'function') {
+        window.updateCartUI();
+      }
+    });
   </script>
+
 </body>
 </html>
