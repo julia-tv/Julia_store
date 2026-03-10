@@ -37,14 +37,14 @@
         <div class="cart" onclick="toggleCart()" style="cursor:pointer;">🛒 <span id="cart-count-header">0</span></div>
       </div>
 
-      <button class="burger" id="burgerBtn" aria-label="Меню" onclick="document.getElementById('mobileMenu').classList.toggle('active'); this.classList.toggle('active');">
+      <button class="burger" id="burgerBtn">
         <span></span><span></span><span></span>
       </button>
     </div>
   </header>
 
   <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html">Головна</a>
+    <a href="index.html" onclick="closeMenu()">Головна</a>
     <a href="#description" onclick="closeMenu()">Про книгу</a>
     <a href="#bundles" onclick="closeMenu()">Набори</a>
     <a href="#footer" onclick="closeMenu()">Контакти</a>
@@ -53,17 +53,16 @@
 
   <section class="hero" id="hero">
     <div class="container hero-grid">
-      
       <div class="hero-media">
         <div class="main-image-wrapper">
-          <img id="mainImage" src="img/zhulya-cover.jpg" alt="Книга Жуля-Рижуля" width="600" height="800">
+          <img id="mainImage" src="img/zhulya-cover.jpg" alt="Книга Жуля-Рижуля" width="600" height="800" loading="lazy">
         </div>
         <div class="thumbnails-row">
-          <img src="img/zhulya-cover.jpg" onclick="changeImage(this.src)" class="active" alt="Cover">
-          <img src="img/zhulya-page1.jpg" onclick="changeImage(this.src)" alt="Page 1">
-          <img src="img/zhulya-page2.jpg" onclick="changeImage(this.src)" alt="Page 2">
-          <img src="img/zhulya-page3.jpg" onclick="changeImage(this.src)" alt="Page 3">
-          <img src="img/zhulya-page4.jpg" onclick="changeImage(this.src)" alt="Page 4">
+          <img src="img/zhulya-cover.jpg" onclick="changeImage(this.src)" class="active" alt="Обкладинка" loading="lazy">
+          <img src="img/zhulya-page1.jpg" onclick="changeImage(this.src)" alt="Сторінка 1" loading="lazy">
+          <img src="img/zhulya-page2.jpg" onclick="changeImage(this.src)" alt="Сторінка 2" loading="lazy">
+          <img src="img/zhulya-page3.jpg" onclick="changeImage(this.src)" alt="Сторінка 3" loading="lazy">
+          <img src="img/zhulya-page4.jpg" onclick="changeImage(this.src)" alt="Сторінка 4" loading="lazy">
         </div>
       </div>
 
@@ -73,7 +72,7 @@
         
         <div class="hero-price-block">
           <span class="price-label">Ціна:</span>
-          <span class="current-price" data-product="zhulya.price">320 грн</span>
+          <span class="current-price" data-product="zhulya.price">400 грн</span>
         </div>
 
         <div class="hero-cta-desktop">
@@ -89,7 +88,6 @@
           <p><strong>Особливість:</strong> Виховує емоційний інтелект</p>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -114,7 +112,6 @@
     <div class="container">
       <h2 class="section-title center-text">Вигідні набори</h2>
       <div class="bundles-grid">
-        
         <div class="bundle-card">
           <h3>Мега-набір: Ефіріум + Жуля</h3>
           <p class="bundle-desc">Дві найкращі книги автора за суперціною!</p>
@@ -134,7 +131,6 @@
           </div>
           <button class="btn-primary" onclick="addToCart('Жуля + Сюрприз', 580)">Купити набір</button>
         </div>
-
       </div>
     </div>
   </section>
@@ -159,7 +155,7 @@
   <section class="section-cta">
     <div class="container">
       <h2>Пригоди чекають на вас!</h2>
-      <button class="btn-primary" onclick="addToCart('Жуля-Рижуля', 320)">Замовити Жулю-Рижулю</button>
+      <button class="btn-primary" onclick="addToCartByData(this, 'zhulya')">Замовити Жулю-Рижулю</button>
     </div>
   </section>
 
@@ -174,9 +170,9 @@
       <div class="footer-col">
         <h4>Інформація</h4>
         <ul style="list-style: none;">
-            <li><a href="politika.html" style="color: #bbb;">Публічна оферта</a></li>
-            <li><a href="refund_policy.html" style="color: #bbb;">Доставка та оплата</a></li>
-            <li><a href="contacts.html" style="color: #bbb;">Контакти ФОП</a></li>
+          <li><a href="politika.html" style="color: #bbb;">Публічна оферта</a></li>
+          <li><a href="refund_policy.html" style="color: #bbb;">Доставка та оплата</a></li>
+          <li><a href="contacts.html" style="color: #bbb;">Контакти ФОП</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -199,34 +195,29 @@
   <div class="mobile-sticky-buy">
     <div class="sticky-btn-wrapper">
       <button class="btn-primary" onclick="addToCartByData(this, 'zhulya')">
-        Купити за&nbsp;<span data-product="zhulya.price">320 грн</span>
+        Купити за&nbsp;<span data-product="zhulya.price">400 грн</span>
       </button>
     </div>
   </div>
 
-  <div id="mobile-cart-float" onclick="toggleCart()" style="display: none; position: fixed; bottom: 90px; right: 20px; background: var(--color-accent); color: white; width: 60px; height: 60px; border-radius: 50%; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1001; cursor: pointer;">
+  <div id="mobile-cart-float" onclick="toggleCart()" style="display: flex; position: fixed; bottom: 90px; right: 20px; background: var(--color-accent); color: white; width: 60px; height: 60px; border-radius: 50%; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1001; cursor: pointer;">
     🛒
     <span id="cart-count-float" style="position: absolute; top: -5px; right: -5px; background: #ff4d4d; color: white; font-size: 12px; font-weight: bold; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid white;">0</span>
   </div>
 
   <div id="cart-modal" style="display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);">
-    <div style="background: white; margin: 10px auto; padding: 25px; width: 90%; max-width: 450px; border-radius: 20px; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
-      <span onclick="toggleCart()" style="position: absolute; right: 20px; top: 15px; font-size: 24px; cursor: pointer; color: #999;">&times;</span>
-      <h3 style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px;">Ваше замовлення</h3>
-      
-      <div id="cart-items-list" style="max-height: 200px; overflow-y: auto; margin-bottom: 20px;">
+    <div style="background: white; margin: 20px auto; padding: 25px; width: 90%; max-width: 450px; border-radius: 20px; position: relative;">
+      <span onclick="toggleCart()" style="position: absolute; right: 20px; top: 15px; font-size: 24px; cursor: pointer;">&times;</span>
+      <h3>Ваше замовлення</h3>
+      <div id="cart-items-list" style="margin: 20px 0;"></div>
+      <div style="display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 20px;">
+        <span>Разом:</span> <span><span id="cart-total-sum">0</span> грн</span>
       </div>
-      
-      <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 18px; margin-bottom: 20px;">
-        <span>Разом до оплати:</span>
-        <span><span id="cart-total-sum">0</span> грн</span>
-      </div>
-
       <form id="order-form">
-        <input type="text" id="client-name" placeholder="Прізвище та Ім'я" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px;">
-        <input type="tel" id="client-phone" placeholder="Номер телефону" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px;">
-        <input type="text" id="client-np" placeholder="Місто та № відділення Нової Пошти" required style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px;">
-        <button type="submit" class="btn-primary" style="width: 100%; border: none;">Оформити замовлення</button>
+        <input type="text" id="client-name" placeholder="Ім'я Прізвище" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px;">
+        <input type="tel" id="client-phone" placeholder="Телефон" required style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px;">
+        <input type="text" id="client-np" placeholder="Місто та Нова Пошта" required style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px;">
+        <button type="submit" class="btn-primary" style="width: 100%; border: none;">Оформити</button>
       </form>
     </div>
   </div>
@@ -236,19 +227,17 @@
 
   <script src="js/data.js?v=3"></script>
   <script src="js/prices.js?v=3"></script>
-  <script src="js/cart.js?v=3"></script> 
-  
+  <script src="js/cart.js?v=3"></script>
   <script src="js/slider.js?v=3"></script>
   <script src="js/carousel.js?v=3"></script>
   <script src="js/burger.js?v=3"></script>
-  <script src="js/sticky-buy.js?v=3"></script>
 
   <script>
     function changeImage(src) {
       document.getElementById('mainImage').src = src;
       document.querySelectorAll('.thumbnails-row img').forEach(img => {
         img.classList.remove('active');
-        if(img.src.includes(src)) img.classList.add('active');
+        if (img.src === src) img.classList.add('active');
       });
     }
 
@@ -259,23 +248,13 @@
       if (btn) btn.classList.remove('active');
     }
 
-    // ЛОГІКА ПРИХОВУВАННЯ ПЛАШКИ (щоб не перекривала кнопку оформити)
-    window.toggleCart = function() {
-        const modal = document.getElementById('cart-modal');
-        const devNotice = document.querySelector('.dev-notice');
-        if (!modal) return;
-        
-        const isHidden = window.getComputedStyle(modal).display === 'none';
-        
-        if (isHidden) {
-            modal.style.display = 'block';
-            if (devNotice) devNotice.style.display = 'none'; // Ховаємо плашку
-            if (typeof window.updateCartUI === 'function') window.updateCartUI();
-        } else {
-            modal.style.display = 'none';
-            if (devNotice) devNotice.style.display = 'block'; // Повертаємо плашку
-        }
-    };
+    // Початкове оновлення кошика
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof window.updateCartUI === 'function') {
+        window.updateCartUI();
+      }
+    });
   </script>
+
 </body>
 </html>
